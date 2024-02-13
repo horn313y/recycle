@@ -4,7 +4,7 @@ import csv
 from django.contrib import admin
 from django.shortcuts import render, redirect
 from django.urls import path
-
+from django_editorjs_fields import EditorJsJSONField
 from recycle.forms import CsvImportForm
 from recycle.models import *
 
@@ -20,6 +20,7 @@ admin.site.register(Agent, admin.ModelAdmin)
 
 @admin.register(Product)
 class ProductAdmin(admin.ModelAdmin):
+    search_fields = ['product_name']
 
     change_list_template = "admin/products_changelist.html"
 
@@ -35,17 +36,8 @@ class ProductAdmin(admin.ModelAdmin):
             csv_file = request.FILES["csv_file"]
             reader = csv.DictReader(codecs.iterdecode(csv_file, 'utf-8'))
             for row in reader:
-                category, catcreate = Category.objects.get_or_create(cat_name = row['cat'])
-                product, prcreate = Product.objects.update_or_create( id=row['id'],
-                                                                      defaults={'id':row['id'],
-                                                                                'product_name':row['name'],
-                                                                                'color':row['ed'],
-                                                                                'product_price' :row['price'],
-                                                                                'category':category,
-                                                                                'product_image':'placeholder.jpg',
-                                                                                'product_short_desc':row['desc']
-                                                                                })
-                print(product, prcreate)
+                product = Product.objects.filter(product_desc=row['art']).update(product_price=row['price'])
+                print(product)
             self.message_user(request, "Продукты импортированы")
             return redirect("..")
         if request.method == "GET":

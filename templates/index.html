@@ -1,8 +1,8 @@
 {% extends 'base.html' %}
 {% load static %}
 
-    {% block page_title %}РесайклПро - переработка электронного оборудования{% endblock %}
-
+    {% block page_title %}«РесайклПро» — Переработка электронных отходов, техники и оборудования{% endblock %}
+    {% block meta_description %} ООО «РесайклПро» — переработка и утилизация электронных отходов. ✅ Имеем лицензию. ✅ Включены в реестр переработчиков. ✅ Бесплатный вывоз. ✅ Работаем по взаимозачету. ☎ +375 (29) 110-33-04 {% endblock %}
     {% block opg %}
     <meta property="og:title" content="«РесайклПро» — Переработка электронных отходов, техники и оборудования" />
     <meta property="og:description" content="ООО «РесайклПро» — переработка и утилизация электронных отходов. ✅ Имеем лицензию. ✅ Включены в реестр переработчиков. ✅ Бесплатный вывоз. ✅ Работаем по взаимозачету. ☎ +375 (29) 110-33-04" />
@@ -108,151 +108,182 @@
     }
     </script>
     {% endblock %}
-
+{% block header_class %}
+<header class="wrapper" style="background-color: #e9ffee;">
+{% endblock %}
 {% block content %}
 <div class="content-wrapper">
+    <section class="video-wrapper bg-overlay ratio ratio-16x9">
+        <video poster="./assets/img/photos/movie2.jpg" src="{% static '/media/movie2.mp4' %}" autoplay loop playsinline muted></video>
+        <div class="video-content">
+        <div class="container py-14 py-md-10">
+          <div class="row gx-lg-8 gx-xl-12 gy-10 align-items-center">
 
-    <section class="wrapper bg-soft-primary">
-        <div class="container pt-3 pt-md-3 pb-14 pb-md-0">
-            <div class="row gx-md-8 gx-lg-12 gy-3 gy-lg-0 mb-13">
-                <div class="col-lg-6">
-                    <h1 class="display-1 fs-66 lh-xs mb-0">Мы бесплатно вывозим бытовую технику и скупаем
-                        радиодетали</h1>
-                </div>
-                <!-- /column -->
-                <div class="col-lg-5 fw-bold">
-                    Сайт работает в тестовом режиме - если вы заметили ошибку, пожалуйста, сообщите нам через специальную форму.<br/> Цены на детали могут отличаться от актуальных. Для получения точной информации посетите сайт <a href="https://xn--n1abcb.xn--90ais/">рпро.бел</a><br/><br/>
-                    <a href="https://docs.google.com/forms/d/e/1FAIpQLSfF_qVxXB4R4_m0I4K6IvI2VOKknGmQSkGaCfNTtGhCbayI8Q/viewform?fbzx=-2814487850887881893" class="btn btn-lg btn-primary rounded-pill me-2">Сообщение об ошибке</a>
+            <div class="col-lg-5">
+                <h1 class="display-4 mb-3">Мы скупаем радиодетали, платы и катализаторы</h1>
+                <p class="lead fs-lg">Оказывыаем услуги для юридических лиц по утилизации оборудования</p>
+                
+                <a href="#" class="btn btn-primary rounded-pill m-3">Заказать звонок</a>
+                <a href="{% url 'search' %}" class="btn btn-outline-primary rounded-pill m-3">Поиск по артикулу</a>
+              </div>
+              <!--/column -->
 
-{#                    <br class="lead fs-25 my-3">Если вы хотите сдать бытовую технику - закажите обратный звонок или#}
-{#                   <a href="{% url 'vyvoz' %}" class="more hover link-green">узнайте подробности</a></p>#}
-{#                      <a href="#" class="btn btn-lg btn-primary rounded-pill me-2" data-bs-toggle="modal" data-bs-target="#modal-01">Заказать звонок</a>#}
-
-                </div>
-                <!-- /column -->
+            <div class="col-lg-7">
+                <div class="card shadow-lg card-border-top border-primary">
+                    <div class="card-body"><script async src="https://telegram.org/js/telegram-widget.js?22" data-telegram-post="rproby/236" data-width="100%"></script></div>
+                  </div>
+                  
+                
             </div>
-            <!-- /.row -->
-            <div class="position-relative formGlobal">
-                <div class="calcForm">
-                    <div class="calcheader">Калькулятор стоимости радиодеталей</div>
-                    <form>
+            <!--/column -->
+            
+          </div>
+          <!--/.row -->
+          <div class="position-relative formGlobal pt-10">
+            <div class="calcForm">
+                <div class="calcheader">Калькулятор стоимости радиодеталей</div>
+                <form>
 
-                        <div id="calcForm">
+                    <div id="calcForm">
 
 
-                        </div>
-                        <div class="form-row calcItemSec">
-                                <a onclick="addNewProduct()" class="btn sec-button rounded-pill mb-2 me-1">+</a>
+                    </div>
+                    <div class="form-row calcItemSec">
+                            <a onclick="addNewProduct()" class="btn sec-button rounded-pill mb-2 me-1">+</a>
 
-                           <div class="calcNavs">
-                               <a class="btn sec-button rounded-pill mb-2 me-1" onclick="senddata()" data-bs-toggle="modal" data-bs-target="#modal-02">Оформить продажу</a>
-                               <span class="badge bg-yellow rounded-pill summarycalc">Итого: <span id="finalprice">0</span></span>
+                       <div class="calcNavs">
+                           <a class="btn sec-button rounded-pill mb-2 me-1" onclick="senddata()" data-bs-toggle="modal" data-bs-target="#modal-02">Оформить продажу</a>
+                           <span class="badge bg-yellow rounded-pill summarycalc">Итого: <span id="finalprice">0</span></span>
 
-                           </div>
-                           </div>
-                    </form>
-                </div>
-                <div class="shape bg-dot primary rellax w-17 h-21" data-rellax-speed="1"
-                     style="top: -2.5rem; right: -2.7rem;"></div>
+                       </div>
+                       </div>
+                </form>
             </div>
+            <div class="shape bg-dot primary rellax w-17 h-20" data-rellax-speed="1"
+                 style="top: -2.5rem; right: -2.7rem;"></div>
+        </div>
+    </div>
+    <!-- /.container -->
+  </div>
+  <!-- /.video-content -->
+</section>
+
+
+   
+      <section class="wrapper bg-light">
+        <div class="container py-14 py-md-12">
+          <div class="row gx-lg-8 gx-xl-12 gy-10">
+            <div class="col-lg-6 mb-0">
+              
+              <h3 class="display-5 mb-4">Услуги для юридических лиц</h3>
+              <p class="lead mb-6">Мы предоставляем услуги по утилизации оборудования с полным сопровождением всего процесса сделки</p>
+              <a href="#" class="btn btn-primary rounded-pill">Получить консультацию</a>
+            </div>
+            <!--/column -->
+            <div class="col-lg-6">
+              <div id="accordion-3" class="accordion-wrapper">
+                <div class="card accordion-item">
+                  <div class="card-header" id="accordion-heading-3-1">
+                    <button class="collapsed" data-bs-toggle="collapse" data-bs-target="#accordion-collapse-3-1" aria-expanded="false" aria-controls="accordion-collapse-3-1">Услуга технического заключения о непригодности техники</button>
+                  </div>
+                  <!-- /.card-header -->
+                  <div id="accordion-collapse-3-1" class="collapse" aria-labelledby="accordion-heading-3-1" data-bs-target="#accordion-3">
+                    <div class="card-body">
+                      <p>Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Cras mattis consectetur purus sit amet fermentum. Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec sed odio dui. Cras justo odio, dapibus ac facilisis.</p>
+                    </div>
+                    <!-- /.card-body -->
+                  </div>
+                  <!-- /.collapse -->
+                </div>
+                <!-- /.card -->
+                <div class="card accordion-item">
+                  <div class="card-header" id="accordion-heading-3-2">
+                    <button class="collapsed" data-bs-toggle="collapse" data-bs-target="#accordion-collapse-3-2" aria-expanded="false" aria-controls="accordion-collapse-3-2">Переработка электронного оборудования</button>
+                  </div>
+                  <!-- /.card-header -->
+                  <div id="accordion-collapse-3-2" class="collapse" aria-labelledby="accordion-heading-3-2" data-bs-target="#accordion-3">
+                    <div class="card-body">
+                      <p>Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Cras mattis consectetur purus sit amet fermentum. Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec sed odio dui. Cras justo odio, dapibus ac facilisis.</p>
+                    </div>
+                    <!-- /.card-body -->
+                  </div>
+                  <!-- /.collapse -->
+                </div>
+                <!-- /.card -->
+                <div class="card accordion-item">
+                  <div class="card-header" id="accordion-heading-3-3">
+                    <button class="collapsed" data-bs-toggle="collapse" data-bs-target="#accordion-collapse-3-3" aria-expanded="false" aria-controls="accordion-collapse-3-3">Безвозмездная сдача</button>
+                  </div>
+                  <!-- /.card-header -->
+                  <div id="accordion-collapse-3-3" class="collapse" aria-labelledby="accordion-heading-3-3" data-bs-target="#accordion-3">
+                    <div class="card-body">
+                      <p>Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Cras mattis consectetur purus sit amet fermentum. Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec sed odio dui. Cras justo odio, dapibus ac facilisis.</p>
+                    </div>
+                    <!-- /.card-body -->
+                  </div>
+                  <!-- /.collapse -->
+                </div>
+                <!-- /.card -->
+                
+              </div>
+              <!-- /.accordion-wrapper -->
+            </div>
+            <!--/column -->
+          </div>
+          <!--/.row -->
+        </div>
+        <!-- /.container -->
+      </section>
+      <!-- /section -->
+
+
+
+      <section class="wrapper bg-light">
+        <div class="container pb-10">
+            <h2 class="display-5 mb-7 center-block">Нам доверяют</h2>
+            <div class="carousel owl-carousel clients" data-margin="30" data-loop="true" data-dots="false" data-autoplay="true" data-autoplay-timeout="3000" data-responsive='{"0":{"items": "2"}, "768":{"items": "4"}, "992":{"items": "5"}, "1200":{"items": "6"}, "1400":{"items": "7"}}'>
+                <div class="item px-5"><img src={% static "/img/brands/c1.jpg" %} alt="Мы скупаем радиодетали" /></div>
+                <div class="item px-5"><img src={% static "/img/brands/c2.jpg" %} alt="Мы скупаем радиодетали" /></div>
+                <div class="item px-5"><img src={% static "/img/brands/c3.jpg" %} alt="Мы скупаем радиодетали" /></div>
+                <div class="item px-5"><img src={% static "/img/brands/c4.jpg" %} alt="Мы скупаем радиодетали" /></div>
+                <div class="item px-5"><img src={% static "/img/brands/c5.jpg" %} alt="Мы скупаем радиодетали" /></div>
+                <div class="item px-5"><img src={% static "/img/brands/c6.jpg" %} alt="Мы скупаем радиодетали" /></div>
+                <div class="item px-5"><img src={% static "/img/brands/c7.jpg" %} alt="Мы скупаем радиодетали" /></div>
+                <div class="item px-5"><img src={% static "/img/brands/c8.jpg" %} alt="Мы скупаем радиодетали" /></div>
+
+            </div>
+            <!-- /.owl-carousel -->
         </div>
         <!-- /.container -->
     </section>
-    <!-- /section -->
-    <section class="wrapper bg-light">
-        <div class="container pt-14">
-            <div class="row gx-md-5 gy-5 mt-n18  ">
 
-                <div class="col-md-6 col-xl-3">
-                    <span class="fs-15 text-uppercase text-line text-yellow"><strong>Физическим лицам</strong></span>
-                    <div class="card shadow-lg">
-                        <div class="card-body">
 
-                            <img src="{% static "img/icons/user.svg" %}"
-                                 class="svg-inject icon-svg icon-svg-md text-yellow mb-3" alt=""/>
-                            <div class="h4like">Скупка радиодеталей у физических<br/>лиц</div>
-                            <p class="mb-2">Более 10-ти приемных пунктов по всей Беларуси. Выездные заготовки в любом регионе</p>
-                            <a href="{% url 'category' %}" class="more hover link-yellow">Прайс-лист</a>
-                        </div>
-                        <!--/.card-body -->
+      <section class="wrapper bg-light">
+        <div class="container ">
+            <h2 class="display-5 mb-7 center-block">Новости</h2>
+          <div class="row gx-md-8 gx-xl-4 gy-10">
+
+            {% for article in articles%}           
+            <div class="col-md-4">
+                <div class="card">
+                    <img class="card-img-top" src="{{article.article_image.url}}" alt="" />
+                    <div class="card-body">
+                      {{ article.article_name}}
                     </div>
-                    <!--/.card -->
-                </div>
-
-                <!--/column -->
-
-
-             <div class="col-md-6 col-xl-3">
-               <span class="fs-15 text-uppercase text-darkblue text-line "><strong>Юридическим лицам</strong></span>
-
-                    <div class="card shadow-lg">
-                        <div class="card-body">
-                            <img src="{% static "img/icons/briefcase-2.svg"%}" class="svg-inject icon-svg icon-svg-md mb-3" alt=""/>
-                            <div class="h4like">Переработка лома и отходов драг металлов</div>
-                            <p class="mb-2">Электронный лом попадет будет утилизирован в соответствии со всеми требованиями.</p>
-                            <a href="{% url 'yuriki' %}" class="more hover link-green">Подробнее</a>
-                        </div>
-                        <!--/.card-body -->
-                    </div>
-                    <!--/.card -->
-                </div>
-                <!--/column -->
-                 <div class="col-md-6 col-xl-3">
-                    <span class="fs-15 text-uppercase text-line text-darkblue"><strong>Юридическим лицам</strong></span>
-                    <div class="card shadow-lg">
-                        <div class="card-body">
-                            <img src="{% static "img/icons/briefcase-2.svg"%}" class="svg-inject icon-svg icon-svg-md text-green mb-3"
-                                 alt=""/>
-                            <div class="h4like">Определение технического состояния</div>
-                            <p class="mb-2">Мы предлагаем помощь по оценке и документальному сопровождению списания вычислительной техники</p>
-                            <a href="{% url 'spisanie' %}" class="more hover link-green">Подробнее</a>
-                        </div>
-                        <!--/.card-body -->
-                    </div>
-                    <!--/.card -->
-                </div>
-                <!--/column -->
-                <div class="col-md-6 col-xl-3">
-                                        <span class="fs-15 text-uppercase text-line text-darkblue"><strong>Юридическим лицам</strong></span>
-
-                    <div class="card shadow-lg">
-                        <div class="card-body">
-                            <img src="{% static "img/icons/briefcase-2.svg"%}" class="svg-inject icon-svg icon-svg-md mb-3" alt=""/>
-                            <div class="h4like">Безвозмездная сдача <br/>техники</div>
-                            <p class="mb-2">Комплексные услуги по переработке электронного оборудования по всей Беларуси</p>
-                            <a href="{% url 'bezvozm' %}" class="more hover link-green">Подробнее</a>
-                        </div>
-                        <!--/.card-body -->
-                    </div>
-                    <!--/.card -->
-                </div>
-                <!--/column -->
-
+                    <!--/.card-body -->
+                  </div>
+                  <!--/.card -->
             </div>
-            <!--/.row -->
-
-            <!--/.row -->
+            <!-- /column -->
+            {% endfor %}
+          </div>
+          <!-- /.row -->
+          <div class="w-100" style="text-align:right;"><a class="underline-2 green">Смотреть все новости</a></div>
         </div>
         <!-- /.container -->
-    </section>
-<section class="wrapper bg-light">
-			<div class="container pt-10">
-				<h2 class="display-5 mb-7 center-block">Нам доверяют</h2>
-				<div class="carousel owl-carousel clients" data-margin="30" data-loop="true" data-dots="false" data-autoplay="true" data-autoplay-timeout="3000" data-responsive='{"0":{"items": "2"}, "768":{"items": "4"}, "992":{"items": "5"}, "1200":{"items": "6"}, "1400":{"items": "7"}}'>
-					<div class="item px-5"><img src={% static "/img/brands/c1.jpg" %} alt="Название бренда" /></div>
-					<div class="item px-5"><img src={% static "/img/brands/c2.jpg" %} alt="Название бренда" /></div>
-					<div class="item px-5"><img src={% static "/img/brands/c3.jpg" %} alt="Название бренда" /></div>
-					<div class="item px-5"><img src={% static "/img/brands/c4.jpg" %} alt="Название бренда" /></div>
-					<div class="item px-5"><img src={% static "/img/brands/c5.jpg" %} alt="Название бренда" /></div>
-					<div class="item px-5"><img src={% static "/img/brands/c6.jpg" %} alt="Название бренда" /></div>
-					<div class="item px-5"><img src={% static "/img/brands/c7.jpg" %} alt="Название бренда" /></div>
-					<div class="item px-5"><img src={% static "/img/brands/c8.jpg" %} alt="Название бренда" /></div>
+      </section>
 
-				</div>
-				<!-- /.owl-carousel -->
-			</div>
-			<!-- /.container -->
-		</section>
+
     <section class="wrapper bg-light">
             <div class="container py-10">
                 <div class="card bg-soft-primary rounded-4">
@@ -318,12 +349,15 @@
                                              aria-labelledby="headingThree" data-bs-parent="#accordionExample">
                                             <div class="card-body">
                                                 <p><b>Для юридических лиц мы предлагаем:</b><br/>
-- Списание. Определение тех. состояния<br/>
-- Переработку лома и отходов драгметаллов<br/>
-- Переработку (утилизацию) электронного оборудования<br/>
+- Определение технического состояния оборудования <br/>
+- Демонтаж узлов из оборудования на территории заказчика<br/>
+- Полный цикл разборки и переработки  оборудования <br/>
+- Безвозмездная сдача техники<br/>
+
 
 <b>Для физических лиц мы предлагаем:</b><br/>
 - Скупку радиодеталей<br/>
+- Скупку катализаторов<br/>
 - Бесплатный вывоз бытовой техники</p>
                                             </div>
                                             <!--/.card-body -->
@@ -369,7 +403,7 @@
       <div class="container pb-14">
         <div class="row gx-lg-8 gx-xl-12 gy-10 align-items-center">
           <div class="col-lg-7 order-lg-2">
-            <figure><img class="w-auto" src={% static "img/derevo.jpg" %} alt=""></figure>
+            <figure><img class="w-auto" src={% static "img/derevo.jpg" %} alt="Мы скупаем радиодетали"></figure>
           </div>
           <!--/column -->
           <div class="col-lg-5">

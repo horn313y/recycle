@@ -1,7 +1,8 @@
 {% extends 'base.html' %}
 {% load static %}
 
-    {% block page_title %}Новости{% endblock %}
+    {% block page_title %}Новости компании ООО «РесайклПро»{% endblock %}
+    {% block meta_description %}➤ Новости компании ООО «РесайклПро». Новости компании и освещение новостей из сферы драгметаллов и электронной и электрической техники.{% endblock %}
 
     {% block opg %}
     <meta property="og:title" content="Новости компании ООО «РесайклПро»" />
@@ -31,9 +32,9 @@
                 <nav aria-label="breadcrumb">
                   <ol class="breadcrumb" id="breadcrumblist" itemscope itemtype="http://schema.org/BreadcrumbList">
                     <li class="breadcrumb-item" itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
-                        <a itemprop="item" href="/">Домашняя страница</a>
+                        <a itemprop="item" href="/">Главная</a>
                         <meta itemprop="position" content="1" />
-                        <meta itemprop="name" content="Домашняя страница"/>
+                        <meta itemprop="name" content="Главная"/>
                     </li>
                     <li class="breadcrumb-item active" aria-current="page" itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
                         <a class="inactiveLink" itemprop="item" href="{% url 'news' %}">Новости</a>
@@ -65,20 +66,20 @@
 
 						<!-- /.blog -->
 						<div class="blog grid grid-view">
-							<div class="row isotope gx-md-8 gy-8 mb-8" style="position: relative; height: 1307.97px;">
-                                {% for article in articles %}
-								<article class="item post col-md-6" style="position: absolute; left: 0%; top: 0px;">
+							<div class="row isotope gx-md-8 gy-8 mb-8" style="position: relative; /*height: 1307.97px;*/">
+                                {% for article in page_obj %}
+								<article class="item post col-md-6" style="position: relative; left: 0%; top: 0px;">
 									<div class="card">
-										<figure class="card-img-top overlay overlay1 hover-scale"><a href="{% url 'article' article_slug=article.article_slug %}"><span class="bg"></span> <img src={{ article.article_image.url }} alt=""></a>
+										<figure class="card-img-top overlay overlay1 hover-scale"><a href="{% url 'article' article_slug=article.article_slug %}"><span class="bg"></span> <img src={{ article.article_image.url }} alt="Новости РПРО"></a>
 											<figcaption>
-												<h5 class="from-top mb-0">Подробнее</h5>
+												<div class="from-top mb-0"><p>Подробнее<p></div>
 											</figcaption>
 										</figure>
 										<div class="card-body">
 											<div class="post-header">
 
 												<!-- /.post-category -->
-												<h2 class="post-title h3 mt-1 mb-3"><a class="link-dark" href={% url 'article' article_slug=article.article_slug %}>{{ article.article_name }}</a></h2>
+												<div><a href="{% url 'article' article.article_slug %}"><p>{{ article.article_name }}</p></a></div>
 											</div>
 											<!-- /.post-header -->
 											<div class="post-content">
@@ -99,25 +100,43 @@
 							<!-- /.row -->
 						</div>
 						<!-- /.blog -->
-						<nav class="d-flex" aria-label="pagination">
-							<ul class="pagination">
-								<li class="page-item disabled">
-									<a class="page-link" href="#" aria-label="Previous">
-										<span aria-hidden="true"><i class="uil uil-arrow-left"></i></span>
-									</a>
-								</li>
-								<li class="page-item active"><a class="page-link" href="#">1</a></li>
-								<li class="page-item"><a class="page-link" href="#">2</a></li>
-								<li class="page-item"><a class="page-link" href="#">3</a></li>
-								<li class="page-item">
-									<a class="page-link" href="#" aria-label="Next">
-										<span aria-hidden="true"><i class="uil uil-arrow-right"></i></span>
-									</a>
-								</li>
-							</ul>
-							<!-- /.pagination -->
-						</nav>
-						<!-- /nav -->
+                    <nav>
+						<ul class="pagination">
+                            {% if page_obj.has_previous %}
+                                <li class="page-item">
+                                    <a class="page-link" href="?page=1" aria-label="Предыдущий">
+                                        <span aria-hidden="true">&laquo;</span>
+                                        <span class="sr-only">Предыдущий</span>
+                                    </a>
+                                </li>
+                                <li class="page-item">
+                                    <a class="page-link" href="?page={{ page_obj.previous_page_number }}">{{ page_obj.previous_page_number }}</a>
+                                </li>
+                            {% endif %}
+                            
+                            <li class="page-item">
+                                <a class="page-link" href="#">{{ page_obj.number }}</a>
+                            </li>
+
+                            {% if page_obj.has_next %}
+                                <li class="page-item">
+                                    <a class="page-link" href="?page={{ page_obj.next_page_number }}">{{ page_obj.next_page_number }}</a>
+                                </li>
+                                <li class="page-item">
+                                  <a class="page-link" href="?page={{ page_obj.num_pages }}" aria-label="Следующий">
+                                    <span aria-hidden="true">&raquo;</span>
+                                    <span class="sr-only">Следующий</span>
+                                  </a>
+                                </li>
+                            {% endif %}
+                            
+                            {% if page_obj.has_previos == False and page_obj.has_next == False %}
+                                <span class="current">
+                                    Страница {{ page_obj.number }} из {{ page_obj.paginator.num_pages }}.
+                                </span>
+                            {% endif %}
+                        </ul>
+                    </nav>
 					</div>
 					<!-- /column -->
 				</div>
@@ -125,7 +144,5 @@
 			</div>
 			<!-- /.container -->
 		</section>
-		<!-- /section -->
-	</div>
 </div>
 {% endblock %}

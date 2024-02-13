@@ -2,7 +2,7 @@
 {% load static %}
 
     {% block page_title %}Списание вычислительной техники в организации — «РесайклПро»{% endblock %}
-
+    {% block meta_description %} Списание бытовой техники в организации ✓ Определение тех. состояния ✓ Составление акта ✓ Выполним экспертизу в кратчайшие сроки! Комплексный подход. {% endblock %}
     {% block opg %}
     <meta property="og:title" content="Списание вычислительной техники в организации — «РесайклПро»" />
     <meta property="og:description" content="Списание бытовой техники в организации ✓ Определение тех. состояния ✓ Составление акта ✓ Выполним экспертизу в кратчайшие сроки! Комплексный подход." />
@@ -79,9 +79,9 @@
                 <nav aria-label="breadcrumb">
                   <ol class="breadcrumb" id="breadcrumblist" itemscope itemtype="http://schema.org/BreadcrumbList">
                     <li class="breadcrumb-item" itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
-                        <a itemprop="item" href="/">Домашняя страница</a>
+                        <a itemprop="item" href="/">Главная</a>
                         <meta itemprop="position" content="1" />
-                        <meta itemprop="name" content="Домашняя страница"/>
+                        <meta itemprop="name" content="Главная"/>
                     </li>
                     <li class="breadcrumb-item active" aria-current="page" itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
                         <a class="inactiveLink" itemprop="item" href="{% url 'spisanie'  %}">Списание вычислительной техники</a>
@@ -98,21 +98,23 @@
 					<div class="col-md-8 offset-md-2 col-lg-6 offset-lg-1 position-relative order-lg-2" data-cue="zoomIn">
 						<div class="shape bg-dot primary rellax w-17 h-19" data-rellax-speed="1" style="top: -1.7rem; left: -1.5rem;"></div>
 						<div class="shape rounded bg-soft-primary rellax d-md-block" data-rellax-speed="0" style="bottom: -1.8rem; right: -0.8rem; width: 85%; height: 90%;"></div>
-						<figure class="rounded"><img src="{% static '1.jpg' %}" alt="" /></figure>
+						<figure class="rounded"><img src="{% static 'img/org-georg1024x698.jpg' %}" alt="Списание. Определение тех состояния" /></figure>
 					</div>
 					<!--/column -->
 					<div class="col-lg-5 mt-lg-n10 text-center text-lg-start" data-group="page-title" >
-						<h1 class="display-1 mb-5">Списание. Определение тех состояния</h1>
-						<p class="lead fs-25 lh-sm mb-7 px-md-10 px-lg-0">Экспертиза технического состояния техники</p>
+						<h1 class="display-1 mb-5">Услуга технического заключения о непригодности техники</h1>
+						<p class="lead fs-25 lh-sm mb-7 px-md-10 px-lg-0">Определение тех состояния</p>
 						<ul>
 							<li>Выезд специалиста для осмотра техники</li>
 							<li>Проведение оценки технического состояния</li>
-							<li>Предоставим документы по списанию</li>
+							<li>Предоставление акта определения технического состояния</li>
 						</ul>
 						<div class="d-flex justify-content-center justify-content-lg-start" data-group="page-title-buttons">
-							<span><a href="#" class="btn btn-lg btn-primary rounded-pill me-2" data-bs-toggle="modal" data-bs-target="#modal-03">Отправить заявку</a></span>
-							<span><a href="#" class="btn btn-lg btn-outline-primary rounded-pill" data-bs-toggle="modal" data-bs-target="#modal-01">Заказать звонок</a></span>
-						</div>
+                            <div class="d-grid gap-2 d-md-block">
+                                <button type="button" class="btn btn-lg btn-primary rounded-pill me-2" data-bs-toggle="modal" data-bs-target="#modal-03">Отправить заявку</button>
+                                <button type="button" class="btn btn-lg btn-primary rounded-pill me-2" data-bs-toggle="modal" data-bs-target="#modal-01">Заказать звонок</button>
+                            </div>
+                        </div>
 					</div>
 					<!--/column -->
 				</div>
@@ -187,14 +189,14 @@
 
 	   <section class="wrapper bg-light">
             <div class="container pb-16">
-                <h2 class="display-4 mb-3">Как происходит вывоз техники?</h2>
+                <h2 class="display-4 mb-3">Как происходит экспертиза техники?</h2>
                 <p class="lead fs-lg mb-8">Если вам нужна консультация вы можете позвнить нам или <a href="#" data-bs-toggle="modal" data-bs-target="#modal-01">заказать обратный звонок</a></p>
                 <div class="row gx-lg-8 gx-xl-12 gy-6 process-wrapper line">
                     <div class="col-md-6 col-lg-3"><span
                             class="icon btn btn-circle btn-lg btn-lg btn-primary disabled mb-4"><span
                             class="number">01</span></span>
                         <div class="mb-1 h4like">Заполните документы</div>
-                        <p>Необходимо оформить пакет документов (заявка-опись, договор) - <a href="#">скачать</a></p>
+                        <p>Необходимо оформить пакет документов (заявка-опись) - <a href="{% static 'materials/zayavka-opis for TC.docx' %}">скачать</a></p>
                     </div>
                     <!--/column -->
                      <div class="col-md-6 col-lg-3"><span
@@ -230,7 +232,7 @@
 					<div class="col-lg-8">
 						<div class="carousel owl-carousel text-center" data-margin="30" data-dots="true" data-autoplay="false" data-autoplay-timeout="5000" data-responsive='{"0":{"items": "1"}, "768":{"items": "2"}, "992":{"items": "2"}, "1200":{"items": "3"}}'>
 							<div class="item">
-								<img class="rounded-circle w-20 mx-auto mb-4" src={% static '/img/avatars/4471.jpg' %} alt="" />
+								<img class="rounded-circle w-20 mx-auto mb-4" src={% static '/img/avatars/4471.jpg' %} alt="Списание. Определение тех состояния 1" />
 								<div class="mb-1 h4like">Оксана</div>
 								<div class="meta mb-2">Руководитель отдела юридических лиц</div>
 								<p class="mb-2">Внутренний номер: 401</p>
@@ -239,7 +241,7 @@
 							</div>
 							<!-- /.item -->
 							<div class="item">
-								<img class="rounded-circle w-20 mx-auto mb-4" src={% static '/img/avatars/4444.jpg'%}  alt="" />
+								<img class="rounded-circle w-20 mx-auto mb-4" src={% static '/img/avatars/4444.jpg'%}  alt="Списание. Определение тех состояния 2" />
 								<div class="mb-1 h4like">Наталья</div>
 								<div class="meta mb-2">Менеджер по работе с клиентами</div>
 								<p class="mb-2">Внутренний номер: 403</p>
@@ -247,17 +249,9 @@
 								<!-- /.social -->
 							</div>
 							<!-- /.item -->
-							<div class="item">
-								<img class="rounded-circle w-20 mx-auto mb-4" src={% static '/img/avatars/4457.jpg'%}  alt="" />
-								<div class="mb-1 h4like">Ирина</div>
-								<div class="meta mb-2">Менеджер по работе с клиентами</div>
-								<p class="mb-2">Внутренний номер: 402</p>
 
-								<!-- /.social -->
-							</div>
-							<!-- /.item -->
 							<div class="item">
-								<img class="rounded-circle w-20 mx-auto mb-4" src={% static '/img/avatars/4448.jpg'%}  alt="" />
+								<img class="rounded-circle w-20 mx-auto mb-4" src={% static '/img/avatars/4448.jpg'%}  alt="Списание. Определение тех состояния 4" />
 								<div class="mb-1 h4like">Юлия</div>
 								<div class="meta mb-2">Менеджер по работе с клиентами</div>
 								<p class="mb-2">Внутренний номер: 404</p>

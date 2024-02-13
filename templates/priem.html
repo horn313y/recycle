@@ -1,7 +1,8 @@
 {% extends 'base.html' %}
 {% load static %}
 
-    {% block page_title %}Сдать старую технику за деньги{% endblock %}
+    {% block page_title %}Утилизация бытовой техники в Минске за деньги | Сдать неработающую технику{% endblock %}
+    {% block meta_description %}✅ Прием старой бытовой техники за деньги ✅ Компания «РесайклПро» оказывает услуги приема и утилизации б/у техники ✅ Бесплатный вывоз ✅ 0,25 за каждый кг техники{% endblock %}
 
     {% block opg %}
     <meta property="og:title" content="Утилизация бытовой техники в Минске за деньги | Сдать неработающую технику" />
@@ -26,7 +27,7 @@
         "name": "Вы можете сами забрать технику?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "<p>Да - в Минске и Могилеве работает услуга бесплатного вывоза техники</p>"
+          "text": "<p>Да - в Минске работает услуга бесплатного вывоза техники</p>"
         }
       }]
     }
@@ -78,9 +79,9 @@
                 <nav aria-label="breadcrumb">
                       <ol class="breadcrumb" id="breadcrumblist" itemscope itemtype="http://schema.org/BreadcrumbList">
                         <li class="breadcrumb-item" itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
-                            <a itemprop="item" href="/">Домашняя страница</a>
+                            <a itemprop="item" href="/">Главная</a>
                             <meta itemprop="position" content="1" />
-                            <meta itemprop="name" content="Домашняя страница"/>
+                            <meta itemprop="name" content="Главная"/>
                         </li>
                         <li class="breadcrumb-item active" aria-current="page" itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
                             <a class="inactiveLink" itemprop="item" href="{% url 'priem' %}">Сдать старую технику за деньги</a>
@@ -100,23 +101,26 @@
                              style="top: -1.7rem; left: -1.5rem;"></div>
                         <div class="shape rounded bg-soft-primary rellax d-md-block" data-rellax-speed="0"
                              style="bottom: -1.8rem; right: -0.8rem; width: 85%; height: 90%;"></div>
-                        <figure class="rounded"><img src="{% static '1.jpg' %}" alt=""/></figure>
+                        <figure class="rounded"><img src="{% static '1.jpg' %}" alt="Сдать старую технику за деньги"/></figure>
                     </div>
                     <!--/column -->
                     <div class="col-lg-5 mt-lg-n10 text-center text-lg-start" data-group="page-title">
                         <h1 class="display-1 mb-5">Сдать старую технику за деньги</h1>
-                        <p class="lead fs-25 lh-sm mb-7 px-md-10 px-lg-0">Сдавая электронные отходы в нашу компнаию, Вы
+                        <p class="lead fs-25 lh-sm mb-7 px-md-10 px-lg-0">Сдавая электронные отходы в нашу компанию, Вы
                             бережете природу</p>
                         <ul>
                             <li>Выплачиваем - 0,25 BYN за килограмм техники</li>
                             <li>Принимаем технику в любом состоянии и количестве</li>
                             <li>Утилизируя технику вы бережете экологию</li>
-                            <li>Не хотите заниматься доставкой техники? Воспользуйтесь <a href={% url 'vyvoz' %}>услугой беспалтного вывоза</a></li>
+                            <li>Не хотите заниматься доставкой техники? Воспользуйтесь <a href={% url 'vyvoz' %}>услугой бесплатного вывоза</a></li>
                         </ul>
-                        <div class="d-flex justify-content-center justify-content-lg-start"
-                             data-group="page-title-buttons">
-                            <span><a href="#" class="btn btn-lg btn-primary rounded-pill me-2" data-bs-toggle="modal" data-bs-target="#modal-01">Заказать звонок</a></span>
-                            <span><a href="{% url 'punkty' %}" class="btn btn-lg btn-outline-primary rounded-pill">Пункты приема</a></span>
+                        <div class="d-flex justify-content-center justify-content-lg-start" data-group="page-title-buttons">
+                            <div class="d-grid gap-2 d-md-block">
+                              <button type="button" class="btn btn-lg btn-primary rounded-pill me-2" data-bs-toggle="modal" data-bs-target="#modal-01">Заказать звонок</button>
+                              <button class="btn btn-lg btn-outline-primary rounded-pill" type="button"> 
+                                <a href="{% url 'punkty' %}">Пункты приема</a>
+                              </button>
+                            </div>
                         </div>
                     </div>
                     <!--/column -->
@@ -127,8 +131,8 @@
             <div class="container pb-12">
                 <div class="row align-items-center mb-7">
                     <div class="col-md-8 col-lg-8 col-xl-7 col-xxl-6 pe-lg-17">
-                        <h2 class="display-4 mb-3">Какую технику мы принимаем?</h2>
-                        <p class="lead fs-lg">Мы принимаем на переработку электрооборудование в полной комплектации: холодильники, стиральные машины, газовые и электроплиты и другое бытовое оборудование</p>
+                        <h2 class="display-4 mb-3">Какую бытовую технику можно сдать?</h2>
+                        <p class="lead fs-lg">На утилизацию мы принимаем старую бытовую технику: холодильники, стиральные машины, газовые и электроплиты и другое бытовое оборудование</p>
                     </div>
                     <!--/column -->
                 </div>
@@ -144,7 +148,7 @@
                             <div class="owl-item active" style="width: 410px; margin-right: 30px;">
                                 <div class="item">
                                     <figure class="rounded mb-6"><img
-                                            src={% static "/img/photos/pd1.jpg" %} alt=""></figure>
+                                            src={% static "/img/photos/pd1.jpg" %} alt="Сдать старую технику за деньги 1"></figure>
                                     <div class="project-details d-flex justify-content-center flex-column">
                                         <div class="post-header">
                                             <div class="post-category text-line mb-3 text-green">(0,25р за кг) в
@@ -160,7 +164,7 @@
                             <div class="owl-item active" style="width: 410px; margin-right: 30px;">
                                 <div class="item">
                                     <figure class="rounded mb-6"><img
-                                            src={% static "/img/photos/pd2.png"%} alt=""></figure>
+                                            src={% static "/img/photos/pd2.png"%} alt="Сдать старую технику за деньги 2"></figure>
                                     <div class="project-details d-flex justify-content-center flex-column">
                                         <div class="post-header">
                                             <div class="post-category text-line mb-3 text-green">(0,25р за кг) в среднем ≈ 10 BYN
@@ -175,7 +179,7 @@
                             <div class="owl-item active" style="width: 410px; margin-right: 30px;">
                                 <div class="item">
                                     <figure class="rounded mb-6"><img
-                                            src={% static "/img/photos/pd3.png" %} alt=""></figure>
+                                            src={% static "/img/photos/pd3.png" %} alt="Сдать старую технику за деньги 3"></figure>
                                     <div class="project-details d-flex justify-content-center flex-column">
                                         <div class="post-header">
                                             <div class="post-category text-line mb-3 text-green">(0,25р за кг) в
@@ -191,7 +195,7 @@
                             <div class="owl-item" style="width: 410px; margin-right: 30px;">
                                 <div class="item">
                                     <figure class="rounded mb-6"><img
-                                            src={% static "/img/photos/pd4.png"%} alt=""></figure>
+                                            src={% static "/img/photos/pd4.png"%} alt="Сдать старую технику за деньги 4"></figure>
                                     <div class="project-details d-flex justify-content-center flex-column">
                                         <div class="post-header">
                                             <div class="post-category text-line mb-3 text-green">(0,25р за кг) в
@@ -225,14 +229,16 @@
         </section>
         <section class="wrapper bg-light">
             <div class="container pb-10">
-                <h2 class="display-4 mb-3">Как сдать технику?</h2>
-                <p class="lead fs-lg mb-8">Мы принимаем технику на приемных пунктах, а также оказываем <a href={% url 'vyvoz' %}>услугу бесплатного вывоза</a></p>
+                <h2 class="display-4 mb-3">Куда сдать старую бытовую технику? </h2>
+                <p class="lead fs-lg mb-8">Сдать бытовую технику в Минске по всей Беларуси можно от 25 копеек за килограмм. Оформить заявку на вывоз бытовой техники можно ежедневно с 9:00 до 17:00 по телефону: +375 (29) 392 44 92
+</p>
+                <p class="lead fs-lg mb-8">Мы принимаем технику <a href=/punkty-priema>на приемных пунктах</a>, а также оказываем <a href={% url 'vyvoz' %}>услугу бесплатного вывоза </a>(услуга доступна только в Минске)</p>
                 <div class="row gx-lg-8 gx-xl-12 gy-6 process-wrapper line">
                     <div class="col-md-6 col-lg-3"><span
                             class="icon btn btn-circle btn-lg btn-primary disabled mb-4"><span
                             class="number">01</span></span>
                         <div class="mb-1 h4like">Выберите удобный для вас пункт приема</div>
-                        <p>Вы можете посмотреть все <a href="{% url 'punkty' %}">пункты према</a> или связаться с нами любым удобным способом - например <a href="#" data-bs-toggle="modal" data-bs-target="#modal-01">заказать звонок</a></p>
+                        <p>Вы можете посмотреть все <a href="{% url 'punkty' %}">пункты приема</a> или связаться с нами любым удобным способом - например <a href="#" data-bs-toggle="modal" data-bs-target="#modal-01">заказать звонок</a></p>
                     </div>
                     <!--/column -->
                     <div class="col-md-6 col-lg-3"><span
@@ -262,7 +268,7 @@
                 <div class="card shadow-lg">
                     <div class="row gx-0">
                         <div class="col-lg-6 image-wrapper bg-image bg-cover rounded-top rounded-lg-start d-none d-md-block"
-                             data-image-src="{% static '/img/photos/tm1.jpg' %}"
+                             data-image-src="{% static '/img/photos/tm1.jpg' %}" alt="Сдать старую технику за деньги 5"
                              style="background-image: url({% static '/img/photos/tm1.jpg' %});">
                         </div>
                         <!--/column -->
@@ -304,15 +310,14 @@
                                         <div class="card-header" id="headingOne">
                                             <button class="collapsed" data-bs-toggle="collapse"
                                                     data-bs-target="#collapseOne" aria-expanded="true"
-                                                    aria-controls="collapseOne">Для чего нужна утилизация
+                                                    aria-controls="collapseOne">Зачем утилизировать бытовую технику?
                                             </button>
                                         </div>
                                         <!--/.card-header -->
                                         <div id="collapseOne" class="accordion-collapse collapse"
                                              aria-labelledby="headingOne" data-bs-parent="#accordionExample">
                                             <div class="card-body">
-                                                <p>Специализированные компании разбирают технику на составляющие, часть из которых отправляется на переработку для повторного использования. Вредные компоненты обязательно проходят переработку.
-Утилизация — наш общий вклад в охрану окружающей среды.</p>
+                                                <p>Утилизация бытовой техники является необходимым процессом, так как позволяет избежать негативного влияния отработанных деталей на окружающую среду и здоровье людей. Правильная утилизация позволяет извлечь ценные материалы и использовать их повторно в производстве новых товаров, что позволяет сократить затраты на добычу сырья и снизить нагрузку на природные ресурсы.</p>
                                             </div>
                                             <!--/.card-body -->
                                         </div>
@@ -323,14 +328,14 @@
                                         <div class="card-header" id="headingTwo">
                                             <button class="collapsed" data-bs-toggle="collapse"
                                                     data-bs-target="#collapseTwo" aria-expanded="false"
-                                                    aria-controls="collapseTwo">Вы можете сами забрать технику?
+                                                    aria-controls="collapseTwo">Можно ли заказать вывоз бытовой техники?
                                             </button>
                                         </div>
                                         <!--/.card-header -->
                                         <div id="collapseTwo" class="accordion-collapse collapse"
                                              aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
                                             <div class="card-body">
-                                                <p>Да - в Минске и Могилеве работает услуга бесплатного вывоза техники</p>
+                                                <p>Услуга бесплатного вывоза техники доступна только в Минске. Вы можете связаться с нами по телефону +375 (29) 392 44 92 ежедневно с 9 до 17:00, и оставить заявку на бесплатный вывоз или оформить заявку на сайте онлайн.</p>
                                             </div>
                                             <!--/.card-body -->
                                         </div>

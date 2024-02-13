@@ -180,7 +180,7 @@ $(document).ready(function() {
 	/*-----------------------------------------------------------------------------------*/
 	/*	ISOTOPE GRID
 	/*-----------------------------------------------------------------------------------*/
-	function enableIsotope() {
+/*	function enableIsotope() {
 		// for each container
 		$('.grid').each(function(i, gridContainer) {
 			var $gridContainer = $(gridContainer);
@@ -227,6 +227,7 @@ $(document).ready(function() {
 		});
 	};
 	enableIsotope();
+	*/
 	/*-----------------------------------------------------------------------------------*/
 	/*	SHOW MORE ITEMS
 	/*-----------------------------------------------------------------------------------*/

@@ -18,43 +18,58 @@ from django.conf.urls.static import static
 from django.contrib import admin
 from django.contrib.sitemaps import views as sitemapViews
 from django.urls import path, include
+from django.views.generic.base import TemplateView
 
 from recycle import views, rest
-from recycle.sitemap import CategorySitemap, ArticlesSitemap, ServicesSitemap, RegionSitemap, HomeSitemap
+from recycle.sitemap import CategorySitemap, ArticlesSitemap, ServicesSitemap, RegionSitemap, HomeSitemap, ProductSitemap
 
 # Sitemap
 sitemaps = {
     'home': HomeSitemap,
+    'product': ProductSitemap,
     'category': CategorySitemap,
     'article': ArticlesSitemap,
     'service': ServicesSitemap,
-    'punkt': RegionSitemap
+    'punkt': RegionSitemap,
 }
 
-# URLs
+# URLs 
 urlpatterns = [
     path('admin', admin.site.urls),
     path('', views.Home.as_view(), name='home'),
     path('category', views.CategoryView.as_view(), name='category'),
     path('category/<str:cat_slug>', views.Products.as_view(), name='products'),
+    path('product/<str:product_slug>', views.Singleproduct.as_view(), name='product'),
+    path('product/modal/<int:product_id>', views.ProductModalView.as_view(), name='product-modal'),
+    path('agent/<int:agentid>', views.Empl.as_view(), name='empl'),
     path('contact', views.Contact.as_view(), name='contact'),
+    path('review/<str:tone>', views.Review.as_view(), name='review'),
     path('skupka-radiodetaley', views.Skupka.as_view(), name='skupka'),
     path('punkty-priema', views.Punkty.as_view(), name='punkty'),
+    path('policy', views.Policy.as_view(), name='policy'),
     path('news', views.News.as_view(), name='news'),
+    path('optovym-klientam', views.Opt.as_view(), name='opt'),
     path('news/<str:article_slug>', views.ArticleView.as_view(), name='article'),
     path('priem-bytovoy-tehniki', views.Bytov.as_view(), name='priem'),
     path('vyvos-bytovoy-tehniki', views.Vyvoz.as_view(), name='vyvoz'),
     path('utilizaciya-tehniki', views.Yuriki.as_view(), name='yuriki'),
     path('bezvozmezdnaya', views.Bezvozmezdno.as_view(), name='bezvozm'),
+    path('skupka-katalizatorov', views.Catalizator.as_view(), name='catalizator'),
     path('spisanie-teh-sostoyanie', views.Spisanie.as_view(), name='spisanie'),
+    path('vacancies', views.Job.as_view(), name='vacancies'),
     path('region/<str:region_slug>', views.RegionView.as_view(), name='region'),
+    path('login', views.Login.as_view(), name='login'),
+    path('cabinet', views.Cabinet.as_view(), name='cabinet'),
     path('editorjs', include('django_editorjs_fields.urls')),
     path('api-auth/', include(rest.router.urls)),
+    path('search', views.Search.as_view(), name='search'),
+    path("robots.txt", TemplateView.as_view(template_name="robots.txt", content_type="text/plain")),
     path('sitemap.xml', sitemapViews.sitemap, {
         'sitemaps': sitemaps,
         'template_name': 'sitemap.html'
     })
 ]
+
 
 # Custom Template for 404 error
 handler404 = "recycle.views.handle_error404"

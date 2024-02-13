@@ -1,8 +1,10 @@
 {% extends 'base.html' %}
-{% load static %}
+{% load static thumbnail editorjs %}
 
-    {% block page_title %}{{ category.cat_name }}{% endblock %}
-
+    {% block page_title %}{{ category.cat_title }}{% endblock %}
+    {% block meta_description %}{{ category.cat_metadesc }}{% endblock %}
+    
+    
     {% block opg %}
     <meta property="og:title" content="{{ category.cat_title }}"/>
     <meta property="og:description" content="{{ category.cat_metadesc }}" />
@@ -31,9 +33,9 @@
                 <nav aria-label="breadcrumb">
                   <ol class="breadcrumb" id="breadcrumblist" itemscope itemtype="http://schema.org/BreadcrumbList">
                     <li class="breadcrumb-item" itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
-                        <a itemprop="item" href="/">Домашняя страница</a>
+                        <a itemprop="item" href="/">Главная</a>
                         <meta itemprop="position" content="1" />
-                        <meta itemprop="name" content="Домашняя страница"/>
+                        <meta itemprop="name" content="Главная"/>
                     </li>
                     <li class="breadcrumb-item" itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
                         <a itemprop="item" href="{% url 'category' %}">Каталог</a>
@@ -51,15 +53,19 @@
     </section>
 		<section class="wrapper bg-light">
 			<div class="container pt-3 ">
+			    <style type="text/css">
+                    <!--
+                    .tab { margin-bottom: 100px; }
+                    -->
+                </style>
 				<div class="row">
-					<div class="col-md-8 col-lg-7 col-xl-6 col-xxl-10">
-						<h1 class="display-1 mb-3">{{ category.cat_name }}</h1>
-                        <p class="pe-lg-15 pe-xxl-12">{{ category.cat_short_desc }}</p>
+						<h1 class="display-1 mbmargin-3">{{ category.cat_name | capfirst }}</h1>
+                       <p align="justify">{{ category.cat_short_desc | capfirst | safe }}</p>
+                       
 					</div>
 					<!-- /column -->
    				</div>
 				<!-- /.row -->
-			</div>
 			<!-- /.container -->
 		</section>
 		<!-- /section -->
@@ -70,21 +76,52 @@
 					<div class="row gx-md-8 gy-10 gy-md-13">
 
                         {% for product in category.product_set.all %}
-						<div class="project item col-md-6 col-xl-3 product">
-                        <div class="post-header">
-									<div class="productsheader">{{ product.product_name }}</div>
-
+                        {% if forloop.counter == 4 and flag > 300 %}
+                                <div class="cat_action_banner_container product-div project item col-md-6 col-xl-3 product">
+                                    <div class="cat_action_banner_maintext">{{ promo_product }}</div>
+                                    <div class="cat_action_banner_subheader">Cделать предварительную оценку ваших деталей?</div>
+                                    <a href="#" data-bs-toggle="modal" data-bs-target="#modal-01" class="cat_action_banner_button btn rounded-pill">Заказать звонок</a>
+                                </div>
+                            {% endif %}
+                            {% if forloop.counter == 4 and flag < 300 %}
+                                <div class="cat_action_banner_container product-div project item col-md-6 col-xl-3 product">
+                                    <div class="cat_action_banner_maintext">Хотите читать новости и прогнозы рынка?</div>
+                                    <div class="cat_action_banner_subheader">Подпишитесь на наш Telegram канал</div>
+                                    <a href="https://t.me/rproby" class="cat_action_banner_button btn rounded-pill">Открыть без подписки</a>
+                                </div>
+                            {% endif %}
+						    <div class="product-div project item col-md-6 col-xl-3 product" id="project{{ product.id }}" data-productid="{{ product.id }}">
+                                <div class="post-header">
+							<a href="{% url 'product' product.product_slug %}"><div class="productsheader">{{ product.product_name | capfirst }}</div></a>
 								</div>
-							<figure class="lift rounded mb-6"><img src={{ product.product_image.url }} alt="" /></figure>
-							<div class="small-desc">
-<div><strong>{{ product.product_price }} BYN за {{ product.color }}</strong></div>
-								{{ product.product_short_desc }}
+								<a href="{% url 'product' product.product_slug %}">
+									<figure class="lift rounded mb-6" style="cursor: pointer">
+										<img data-productid="{{ product.id }}" src="{% thumbnail product.product_image 300x300 %}" alt="{{ product.product_name }}"/>
+									</figure>
+								</a>
+							    <div class="small-desc">
+							        <div><strong>Артикул:</strong> {{ product.product_desc }}</div>
+                                    <div>
+                                        <strong style="font-size:18px">{{ product.product_price }} BYN</strong></br>
+                                        <strong style="font-size:14px">за {{ product.color }}</strong>
+                                    </div>
+								    {{ product.product_short_desc | capfirst }}
+							    </div>
+                                <a href="#" class="py-1 my-1 hover-3 me-4 btn btn-outline-primary rounded-pill" data-bs-toggle="modal" data-bs-target="#modal-01">У меня есть такая деталь</a></br>
+                            <a class="py-1 hover-3 me-4 btn btn-outline-primary rounded-pill" href="{% url 'product' product.product_slug %}">Подробнее</a>
+                             <div class="btn-group" role="group" aria-label="Basic outlined example">
 
-							</div>
-                           <a href="#" class="py-1" data-bs-toggle="modal" data-bs-target="#modal-01">У меня есть такая деталь</a>
-							<!-- /.project-details -->
-						</div>
+</div>   
+						    </div>
+                            
                         {% endfor %}
+                        <!-- Modal -->
+                        <div class="modal fade" id="productModal" tabindex="-1" role="dialog" aria-labelledby="productModalLabel" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered" role="document">
+                            <div class="modal-content">
+                            </div>
+                        </div>
+                        </div>
 
 					</div>
 					<!-- /.row -->
@@ -95,7 +132,173 @@
 		</section>
 
 		<!-- /section -->
+		
+		<section class="wrapper bg-light">
+			<div class="container pt-3 ">
+				<div class="row">
+                       <p align="justify">{{ category.cat_desc | capfirst | safe }}</p>
+					</div>
+					<!-- /column -->
+   				</div>
+				<!-- /.row -->
+			<!--</div>-->
+			<!-- /.container -->
+		</section>
 	</div>
 	<!-- /.content-wrapper -->
+<section class="wrapper bg-light wrapper-border">
+    <div class="container pb-16">
+        <div class="card bg-soft-primary rounded-4">
+            <div class="card-body p-md-10 p-xl-11">
+                <div class="row gx-lg-8 gx-xl-12 gy-10">
+                    <div class="col-lg-6">
+                       <h2 class="display-4 mb-4">Часто задаваемые вопросы</h2>
+                        <p class="lead fs-lg mb-0">Если вы не нашли ответа на свой вопрос позвоните нам или закажите <a href="#" data-bs-toggle="modal" data-bs-target="#modal-01">обратный звонок</a></p>
+                    </div>
+                    <!--/column -->
+                    <div class="col-lg-6">
+                        <div class="accordion accordion-wrapper" id="accordionExample" itemscope itemtype="http://schema.org/FAQPage">
+                            <!--/ Question/answer 1 -->
+                            {% if category.cat_question_1|length > 0 %}
+                            <div class="card plain accordion-item" itemprop="mainEntity" itemscope itemtype="http://schema.org/Question">
+                                <div class="card-header" id="headingOne" itemprop="name">
+                                    <button class="collapsed" data-bs-toggle="collapse"
+                                            data-bs-target="#collapseOne" aria-expanded="true"
+                                            aria-controls="collapseOne">{{ category.cat_question_1 }}
+                                    </button>
+                                </div>
+                                <!--/.card-header -->
+                                <div id="collapseOne" class="accordion-collapse collapse"
+                                     aria-labelledby="headingOne" data-bs-parent="#accordionExample" itemscope itemprop="acceptedAnswer" itemtype="http://schema.org/Answer">
+                                    <div class="card-body" itemprop="text">
+                                        <p>{{ category.cat_answer_1 | editorjs }}</p>
+                                    </div>
+                                    <!--/.card-body -->
+                                </div>
+                                <!--/.accordion-collapse -->
+                            </div>
+                            {% endif %}
+                            <!--/.accordion-item -->
+                            <!--/ Question/answer 2 -->
+                            {% if category.cat_question_2|length > 0 %}
+                            <div class="card plain accordion-item" itemprop="mainEntity" itemscope itemtype="http://schema.org/Question">
+                                <div class="card-header" id="headingTwo" itemprop="name">
+                                    <button class="collapsed" data-bs-toggle="collapse"
+                                            data-bs-target="#collapseTwo" aria-expanded="false"
+                                            aria-controls="collapseTwo">{{ category.cat_question_2 }}
+                                    </button>
+                                </div>
+                                <!--/.card-header -->
+                                <div id="collapseTwo" class="accordion-collapse collapse"
+                                     aria-labelledby="headingTwo" data-bs-parent="#accordionExample" itemscope itemprop="acceptedAnswer" itemtype="http://schema.org/Answer">
+                                    <div class="card-body" itemprop="text">
+                                        <p>{{ category.cat_answer_2 | editorjs  }}</p>
+                                    </div>
+                                    <!--/.card-body -->
+                                </div>
+                                <!--/.accordion-collapse -->
+                            </div>
+                            
+                            <!--/.accordion-item -->
+                            {% endif %}
+                            <!--/ Question/answer 3 -->
+                        {% if category.cat_question_3|length > 0 %}    
+                        <div class="card plain accordion-item" itemprop="mainEntity" itemscope itemtype="http://schema.org/Question">
+                                <div class="card-header" id="headingthree" itemprop="name">
+                                    <button class="collapsed" data-bs-toggle="collapse"
+                                            data-bs-target="#collapseThree" aria-expanded="true"
+                                            aria-controls="collapseThree">{{ category.cat_question_3 }}
+                                    </button>
+                                </div>
+                                <!--/.card-header -->
+                                <div id="collapseThree" class="accordion-collapse collapse"
+                                     aria-labelledby="headingthree" data-bs-parent="#accordionExample" itemscope itemprop="acceptedAnswer" itemtype="http://schema.org/Answer">
+                                    <div class="card-body" itemprop="text">
+                                        <p>{{ category.cat_answer_3 | editorjs }}</p>
+                                    </div>
+                                    <!--/.card-body -->
+                                </div>
+                                {% endif %}
+                                <!--/ Question/answer 4 -->
+                                {% if category.cat_question_4|length > 0 %}
+                                <div class="card plain accordion-item" itemprop="mainEntity" itemscope itemtype="http://schema.org/Question">
+                                <div class="card-header" id="headingfour" itemprop="name">
+                                    <button class="collapsed" data-bs-toggle="collapse"
+                                            data-bs-target="#collapseFour" aria-expanded="true"
+                                            aria-controls="collapseFour">{{ category.cat_question_4 }}
+                                    </button>
+                                </div>
+                                <!--/.card-header -->
+                                <div id="collapseFour" class="accordion-collapse collapse"
+                                     aria-labelledby="headingfour" data-bs-parent="#accordionExample" itemscope itemprop="acceptedAnswer" itemtype="http://schema.org/Answer">
+                                    <div class="card-body" itemprop="text">
+                                        <p>{{ category.cat_answer_4 | editorjs }}</p>
+                                    </div>
+                                    <!--/.card-body -->
+                                </div>
+                                {% endif %}
+                                <!--/ Question/answer 5 -->
+                                {% if category.cat_question_5|length > 0 %}
+                                <div class="card plain accordion-item" itemprop="mainEntity" itemscope itemtype="http://schema.org/Question">
+                                <div class="card-header" id="headingfive" itemprop="name">
+                                    <button class="collapsed" data-bs-toggle="collapse"
+                                            data-bs-target="#collapseFive" aria-expanded="true"
+                                            aria-controls="collapseFive">{{ category.cat_question_5 }}
+                                    </button>
+                                </div>
+                                <!--/.card-header -->
+                                <div id="collapseFive" class="accordion-collapse collapse"
+                                     aria-labelledby="headingfive" data-bs-parent="#accordionExample" itemscope itemprop="acceptedAnswer" itemtype="http://schema.org/Answer">
+                                    <div class="card-body" itemprop="text">
+                                        <p>{{ category.cat_answer_5 | editorjs }}</p>
+                                    </div>
+                                    <!--/.card-body -->
+                                </div>
+                                {% endif %}
+                                <!--/.accordion-collapse -->
+                            </div>
+                        </div>
+                        <!--/.accordion -->
+                    </div>
+                    <!--/column -->
+                </div>
+                <!--/.row -->
+            </div>
+            <!--/.card-body -->
+        </div>
+        <!--/.card -->
+    </div>
+    <!-- /.container -->
+</section>
+{% endblock %}
+        
 
+{% block extra_scripts %}
+    <script type="text/javascript" src={% static "/js/axios.min.js" %}></script>
+    <script type="text/javascript" src={% static "/js/jquery.zoom.min.js" %}></script>
+    <script>
+        $(document).ready(function() {
+        let projects = document.querySelectorAll('.productimage');
+        for (let i = 0; i < projects.length; i++) {
+            let individualProject = projects[i];
+            let productId = projects[i].dataset.productid;
+            individualProject.onclick = function() {
+            axios({
+                url: '/product/modal/' + productId,
+            })
+                .then((res) => {
+                $('#productModal .modal-content').html(res.data);
+                $('#productModal').modal('show');
+                $('.jquery-zoom').zoom();
+                $('#productModal .close').on('click', function() {
+                    $('#productModal').modal('hide');
+                })
+                })
+                .catch((err) => {
+                throw err
+                })
+            }
+        }
+        })
+    </script>
 {% endblock %}

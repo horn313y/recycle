@@ -18,6 +18,17 @@ class Category(models.Model):
     cat_desc = models.TextField('Полное описание', blank=True)
     cat_image = models.ImageField('Изображение категории', default='placeholder.jpg')
     pub_date = models.DateTimeField(default=datetime.datetime.now)
+    cat_question_1 = models.TextField('Вопрос 1', blank=True, default='')
+    cat_answer_1 = EditorJsJSONField(blank=True,  default='')
+    cat_question_2 = models.TextField('Вопорос 2', blank=True, default='')
+    cat_answer_2 = EditorJsJSONField(blank=True, default='')
+    cat_question_3 = models.TextField('Вопрос 3', blank=True, default='')
+    cat_answer_3=EditorJsJSONField(blank=True, default='')
+    cat_question_4 = models.TextField('Вопрос 4', blank=True, default='')
+    cat_answer_4=EditorJsJSONField(blank=True, default='')
+    cat_question_5 = models.TextField('Вопрос 5', blank=True, default='')
+    cat_answer_5=EditorJsJSONField(blank=True, default='')
+    
 
     def __str__(self):
         return self.cat_name
@@ -32,14 +43,19 @@ class Product(models.Model):
     color = models.CharField('Оплата', max_length=10, choices=PURCACHE_CHOICES, default='kg')
     product_price = models.CharField('Цена', max_length=200, blank=True, null=True)
     product_short_desc = models.TextField('Короткое описание', blank=True)
-    product_desc = models.TextField('Полное описание', blank=True)
+    product_desc = models.TextField('Артикул', blank=True)
     product_image = models.ImageField('Изображение продукта', default='placeholder.jpg')
+    product_image_big = models.ImageField('Большое изображение продукта', default='placeholder.jpg')
     category = models.ForeignKey(Category, on_delete=models.CASCADE)
     pub_date = models.DateTimeField(default=datetime.datetime.now)
-
+    body_editorjs = EditorJsJSONField()
+    product_slug = models.CharField('URL', max_length=200, default='product' + str(datetime.datetime.now()))
 
     def __str__(self):
         return self.product_name
+        
+    def get_absolute_url(self):
+        return reverse('product', args=[self.product_slug])
 
 class Article(models.Model):
     article_name = models.CharField('Заголовок H1', max_length=200)
@@ -66,6 +82,7 @@ class Region(models.Model):
     region_short_desc = models.TextField('Короткое описание', blank=True)
     body_editorjs = EditorJsJSONField()
     pub_date = models.DateTimeField(default=datetime.datetime.now)
+    region_add_info = models.TextField('Доп. информация', blank=True)
 
     def __str__(self):
         return self.region_name
@@ -84,6 +101,8 @@ class Punkt(models.Model):
     body_editorjs = EditorJsJSONField()
     region = models.ForeignKey(Region, on_delete=models.CASCADE)
     pub_date = models.DateTimeField(default=datetime.datetime.now)
+    punkt_negative = models.IntegerField('Негативный рейтинг', blank=True, default=0)
+    punkt_positive = models.IntegerField('Позитивный рейтинг', blank=True, default=0)
 
     def __str__(self):
         return self.punkt_name

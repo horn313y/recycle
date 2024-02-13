@@ -44,7 +44,14 @@ const productPrice = (e, p) => {
         total += Number(elem.innerHTML)
     })
     finalpri.innerHTML = total
-
+       let informer = '<div class="alert alert-info alert-icon alert-sale" style=" opacity: 0; transition: all 1s" role="alert"><i class="uil uil-check-circle"></i> Если вы хотите обсудить цены на материал то  <a href="https://t.me/rproby_admin" class="alert-link hover">напишите напрямую руководителю направления</a>.</div>'
+    if (total>=500 && !document.getElementsByClassName('alert alert-info alert-icon alert-sale')[0]) {
+        document.getElementsByClassName('position-relative formGlobal')[0].insertAdjacentHTML('beforeend',informer)
+        setTimeout(()=>{
+            document.getElementsByClassName('alert alert-info alert-icon alert-sale')[0].style.opacity = 1;
+            
+        },10);
+    }
 }
 
 

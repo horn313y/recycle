@@ -1,2 +1,8 @@
-/venv
+/venvrecycle
 /.idea
+.DS_Store
+.gitignore
+pip-log.txt
+pip-delete-this-directory.txt
+__pycache__/
+/recycle/__pycache__/

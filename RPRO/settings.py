@@ -26,7 +26,8 @@ SECRET_KEY = 'django-insecure-!5i9)j-2y^2i@m&x66u#)#3+++@01)bd&-jhm)!fvu-+f!3lks
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['rpro.pythonanywhere.com','127.0.0.1:8000','127.0.0.1']
+#ALLOWED_HOSTS = ['rpro.pythonanywhere.com','127.0.0.1:8000','127.0.0.1']
+ALLOWED_HOSTS = ['localhost','0.0.0.0','178.159.45.115', 'rpro.by','127.0.0.1'] 
 
 # Application definition
 
@@ -43,7 +44,9 @@ INSTALLED_APPS = [
     'django_editorjs_fields',
     'django.contrib.sitemaps',
     'django.contrib.sites',
-    'django_bootstrap_breadcrumbs'
+    'django_bootstrap_breadcrumbs',
+	'easy_thumbnails',
+	'captcha'
 ]
 
 MIDDLEWARE = [
@@ -63,7 +66,7 @@ TEMPLATES = [
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': [BASE_DIR / 'templates']
         ,
-        'APP_DIRS': True,
+        #'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
                 'django.template.context_processors.debug',
@@ -72,19 +75,26 @@ TEMPLATES = [
                 'django.contrib.messages.context_processors.messages',
                 'RPRO.baseprocessor.custom_proc'
             ],
+            'loaders': [
+                'django.template.loaders.filesystem.Loader',
+                'django.template.loaders.app_directories.Loader',
+            ],
         },
     },
 ]
 
 WSGI_APPLICATION = 'RPRO.wsgi.application'
 
+X_FRAME_OPTIONS = 'ALLOW-FROM http://webvisor.com'
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        #'NAME': BASE_DIR / 'db.sqlite3',
+        
     }
 }
 
@@ -109,9 +119,9 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/3.2/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'ru-RU'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Europe/Minsk'
 
 USE_I18N = True
 
@@ -142,5 +152,21 @@ REST_FRAMEWORK = {
     'DEFAULT_FILTER_BACKENDS': ['django_filters.rest_framework.DjangoFilterBackend']
 }
 
+
 SITE_ID = 1
 APPEND_SLASH = False
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = "rproby33@gmail.com"
+EMAIL_HOST_PASSWORD="qswkqsezwmxsmdpd"
+
+CSRF_TRUSTED_ORIGINS = ['https://rpro.by', 'https://cloudflare.com', 'https://rpro.by/adminlogin/']
+CSRF_COOKIE_SECURE = True
+
+RECAPTCHA_PUBLIC_KEY = '6LfGgSgmAAAAAON19FYtNA0yIEPAxBsWJJlQ537H'
+RECAPTCHA_PRIVATE_KEY = '6LfGgSgmAAAAAMYad73gi-a7CEudH1LzMHg24HC7'
+SILENCED_SYSTEM_CHECKS = ['captcha.recaptcha_test_key_error']
+USE_X_FORWARDED_HOST = True

@@ -2,8 +2,9 @@
 {% load static %}
 {% load editorjs %}
 
-    {% block page_title %}Приемный пункт радиодеталей в г. {{ region.region_name }}{% endblock %}
-
+    {% block page_title %}{{ region.region_title }}{% endblock %}
+    {% block meta_description %}{{ region.region_metadesc }}{% endblock %}
+    
     {% block opg %}
     <meta property="og:title" content="{{ region.region_title }}" />
     <meta property="og:description" content="{{ region.region_metadesc }}" />
@@ -52,9 +53,9 @@
                 <nav aria-label="breadcrumb">
                   <ol class="breadcrumb" id="breadcrumblist" itemscope itemtype="http://schema.org/BreadcrumbList">
                     <li class="breadcrumb-item" itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
-                        <a itemprop="item" href="/">Домашняя страница</a>
+                        <a itemprop="item" href="/">Главная</a>
                         <meta itemprop="position" content="1" />
-                        <meta itemprop="name" content="Домашняя страница"/>
+                        <meta itemprop="name" content="Главная"/>
                     </li>
                     <li class="breadcrumb-item" itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
                         <a itemprop="item" href="{% url 'punkty'  %}">Пункты приема</a>
@@ -75,7 +76,7 @@
 					<div class="col-lg-4">
 						<h1 class="display-4 mb-3 pe-xl-10">{{ region.region_name }}</h1>
 						<p class="lead fs-lg mb-0 pe-xxl-10">{{ region.body_editorjs | editorjs }}</p>
-                        <a href="#" class="btn btn-lg btn-primary rounded-pill me-2 mt-5" data-bs-toggle="modal" data-bs-target="#modal-01">Заказать звонок</a>
+                        <a href="#" class="btn btn-lg btn-primary rounded-pill me-2 mt-5" data-bs-toggle="modal" data-bs-target="#modal-01" style="margin-bottom: 40px;">Заказать звонок</a>
 					</div>
 					<!-- /column -->
 					<div class="col-lg-8 mt-lg-2">
@@ -90,7 +91,7 @@
 
 
 
-								<h3 class="counter" style="visibility: visible;">{{ region.agent_set.count }}</h3>
+								<div class="counter" style="visibility: visible;"><b>{{ region.agent_set.count }}</b></div>
 								<p>Агентов</p>
 							</div>
 							<!--/column -->
@@ -105,8 +106,8 @@
 <path class="svg-stroke" d="M204.8,361.4c-86.4,0-156.6-70.2-156.6-156.6S118.4,48.2,204.8,48.2s156.6,70.2,156.6,156.6  S291.2,361.4,204.8,361.4z M204.8,72.3c-73.1,0-132.5,59.4-132.5,132.5s59.4,132.5,132.5,132.5s132.5-59.5,132.5-132.5  S277.9,72.3,204.8,72.3z"></path>
 <path class="svg-stroke" d="M200.9,246.7c-8.8,0-17.2-3.5-23.5-9.7L145,204.5c-4.7-4.7-4.7-12.3,0-17s12.3-4.7,17,0l32.5,32.5  c3.6,3.5,9.3,3.5,12.8,0l49.8-49.9c4.7-4.7,12.3-4.7,17,0s4.7,12.3,0,17L224.4,237C218.2,243.2,209.7,246.7,200.9,246.7L200.9,246.7  z"></path>
 </svg>
-								<h3 class="counter" style="visibility: visible;">{{ region.punkt_set.count }}</h3>
-								<p>Приемных пукнтов</p>
+								<div class="counter" style="visibility: visible;"><b>{{ region.punkt_set.count }}</b></div>
+								<p>Приемных пунктов</p>
 							</div>
 							<!--/column -->
 							<div class="col-md-4">
@@ -121,7 +122,7 @@
 <path class="svg-fill" d="M294.9,288.5h-13.8c-8.9,0-16.1-7.2-16.1-16.1l0,0v-48.3c0-8.9,7.2-16.1,16.1-16.1l0,0h13.8  c8.9,0,16.1,7.2,16.1,16.1c0,0,0,0,0,0v48.3C311,281.3,303.8,288.5,294.9,288.5L294.9,288.5z"></path>
 <path class="svg-stroke" d="M294.9,300.4h-13.8c-15.5,0-28-12.5-28-28v-48.3c0-15.5,12.5-28,28-28h13.8c15.5,0,28,12.5,28,28v48.3  C322.9,287.9,310.4,300.4,294.9,300.4L294.9,300.4z M281.1,219.9c-2.3,0-4.2,1.9-4.2,4.2v48.3c0,2.3,1.9,4.2,4.2,4.2h13.8  c2.3,0,4.2-1.9,4.2-4.2v-48.3c0-2.3-1.9-4.2-4.2-4.2L281.1,219.9z"></path>
 </svg>
-								<h3 class="counter" style="visibility: visible;">100%</h3>
+								<div class="counter" style="visibility: visible;"><b>100%</b></div>
 								<p>Покрытие доставки</p>
 							</div>
 							<!--/column -->
@@ -132,21 +133,22 @@
 				</div>
 		</section>
 
-    <section class="container">
+<section class="container">
         <div class="row grid-view pt-10">
             <div class="pb-4">
-            <h1 class="display-4 mb-3 pe-xl-10">Пункты приема</h1>
-            <p class="lead fs-lg mb-0 pe-xxl-10">В этих пунктах можно сдать технику и радиодетали</p>
+            <h2 class="display-4 mb-3 pe-xl-10">Пункты приема</h2>
+            <p class="lead fs-lg mb-0 pe-xxl-10">{{ region.region_add_info }}</p>
             </div>
             {% for punkt in region.punkt_set.all %}
 				<div class="col-md-6 col-lg-4">
 						<div class="position-relative">
 							<div class="shape rounded bg-soft-primary rellax d-md-block" data-rellax-speed="0" style="bottom: -0.75rem; right: -0.75rem; width: 98%; height: 98%; z-index: 0; transform: translate3d(0px, 0px, 0px);"></div>
 							<div class="card shadow-lg">
-								<figure class="card-img-top"><img class="img-fluid" src={{ punkt.punkt_image.url }} alt=""></figure>
+								<figure class="card-img-top"><img class="img-fluid" src={{ punkt.punkt_image.url }} alt="{{ region.region_name }}"></figure>
 								<div class="card-body px-6 py-5">
 									<div class="mb-1 h4like">{{ punkt.punkt_name }}</div>
 									<p class="mb-0">{{ punkt.punkt_short_desc }}</p>
+									<p>{{ punkt.body_editorjs | editorjs }}</p>
                                     <span class="underline"><a target="_blank" href="https://yandex.ru/maps/?rtext=~{{ punkt.punkt_geo }}">Построить маршрут в Яндекс.Карты</a></span>
 								</div>
 								<!--/.card-body -->
@@ -158,7 +160,114 @@
 			{% endfor %}
 				</div>
     </section> <br/><br/>
+<section class="wrapper bg-light">
+			<div class="container pb-10 pt-10">
+				<div class="grid grid-view projects-masonry">
 
+					<div class="row gx-md-8 gy-10 gy-md-13 isotope">
+
+                        {% for category in categorys %}
+						<div class="project item col-md-6 col-xl-4 product">
+                        <div class="post-header">
+									<div class="post-title h3">{{ category.cat_name }}</div>
+								</div>
+							<figure class="lift rounded mb-6"><a href={% url 'products' cat_slug=category.cat_slug %}> <img src={{ category.cat_image.url }} alt=">{{ region.region_name }}" /></a></figure>
+							<div class="project-details d-flex justify-content-center flex-column">
+
+								<!-- /.post-header -->
+							</div>
+							<!-- /.project-details -->
+						</div>
+                        {% endfor %}
+
+					</div>
+					<!-- /.row -->
+				</div>
+				<!-- /.grid -->
+			</div>
+			<!-- /.container -->
+		</section>
+		<section class="wrapper bg-light wrapper-border">
+			<div class="container py-10">
+				<div class="card bg-soft-primary rounded-4">
+					<div class="card-body p-md-10 p-xl-11">
+						<div class="row gx-lg-8 gx-xl-12 gy-10">
+							<div class="col-lg-6">
+								<h2 class="display-4 mb-4">Часто задаваемые вопросы</h2>
+								<p class="lead fs-lg mb-0">Если вы не нашли ответа на свой вопрос позвоните нам или закажите <a href="#" data-bs-toggle="modal" data-bs-target="#modal-01">обратный звонок</a></p>
+							</div>
+							<!--/column -->
+							<div class="col-lg-6">
+								<div class="accordion accordion-wrapper" id="accordionExample">
+									<div class="card plain accordion-item">
+										<div class="card-header" id="headingOne">
+											<button class="collapsed" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">Какие радиодетали вы принимаете?</button>
+										</div>
+										<!--/.card-header -->
+										<div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+											<div class="card-body">
+												<p>Нам можно сдать все детали, перечисленные в <a href=/category>каталоге</a></p>
+											</div>
+											<!--/.card-body -->
+										</div>
+										<!--/.accordion-collapse -->
+									</div>
+									<!--/.accordion-item -->
+									<div class="card plain accordion-item">
+										<div class="card-header" id="headingTwo">
+											<button class="collapsed" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">Что необходимо для сдачи радиолома?</button>
+										</div>
+										<!--/.card-header -->
+										<div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
+											<div class="card-body">
+                                                <p>Посмотреть адреса и режим работы пунктов приема деталей можно на странице подходящего Вам региона. При сдаче электронного лома необходимо предъявить паспорт</p>
+											</div>
+											<!--/.card-body -->
+										</div>
+										<!--/.accordion-collapse -->
+									</div>
+									<!--/.accordion-item -->
+									<div class="card plain accordion-item">
+										<div class="card-header" id="headingThree">
+											<button class="collapsed" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">Как узнать цену за определенную радиодеталь?</button>
+										</div>
+										<!--/.card-header -->
+										<div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
+											<div class="card-body">
+												<p>Актуальные цены указаны в <a href=/category>каталоге</a>, также вы можете воспользоваться калькулятором на главной странице или позвонить нам</p>
+											</div>
+											<!--/.card-body -->
+										</div>
+										<!--/.accordion-collapse -->
+									</div>
+									<!--/.accordion-item -->
+									<div class="card plain accordion-item">
+										<div class="card-header" id="headingFour">
+											<button class="collapsed" data-bs-toggle="collapse" data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">Вы принимаете радиодетали, не перечисленные в прейскуранте?</button>
+										</div>
+										<!--/.card-header -->
+										<div id="collapseFour" class="accordion-collapse collapse" aria-labelledby="headingFour" data-bs-parent="#accordionExample">
+											<div class="card-body">
+												<p>Нет. Мы принимаем только радиодетали, перечисленные в нашем <a href=/category>прейскуранте</a></p>
+											</div>
+											<!--/.card-body -->
+										</div>
+										<!--/.accordion-collapse -->
+									</div>
+									<!--/.accordion-item -->
+								</div>
+								<!--/.accordion -->
+							</div>
+							<!--/column -->
+						</div>
+						<!--/.row -->
+					</div>
+					<!--/.card-body -->
+				</div>
+				<!--/.card -->
+			</div>
+			<!-- /.container -->
+		</section>
 {#    <section class="container">#}
 {#        <div class="row grid-view py-10">#}
 {#            <div class="pb-4">#}
@@ -170,7 +279,7 @@
 {#						<div class="position-relative">#}
 {#							<div class="shape rounded bg-soft-primary rellax d-md-block" data-rellax-speed="0" style="bottom: -0.75rem; right: -0.75rem; width: 98%; height: 98%; z-index: 0; transform: translate3d(0px, 0px, 0px);"></div>#}
 {#							<div class="card shadow-lg">#}
-{#								<figure class="card-img-top"><img class="img-fluid" src={{ agent.agent_image.url }} alt=""></figure>#}
+{#								<figure class="card-img-top"><img class="img-fluid" src={{ agent.agent_image.url }} alt=">{{ region.region_name }}"></figure>#}
 {#								<div class="card-body px-6 py-5">#}
 {#									<div class="mb-1 h4like">{{ agent.agent_name }}</div>#}
 {#									<p class="mb-0">Агент по закупкам</p>#}

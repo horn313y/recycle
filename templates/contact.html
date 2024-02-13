@@ -1,7 +1,8 @@
 {% extends 'base.html' %}
 {% load static %}
 
-    {% block page_title %}Контакты{% endblock %}
+    {% block page_title %}Контактная информация — ООО «РесайклПро»: адрес, телефоны, e-mail{% endblock %}
+    {% block meta_description %}➤ Контакты ООО «РесайклПро». ✅ Имеем бессрочную лицензию. ✅ Включены в реестр переработчиков. ✅ Принимаем технику и радиодетали по высоким ценам.{% endblock %}
 
     {% block opg %}
     <meta property="og:title" content="Контактная информация — ООО «РесайклПро»: адрес, телефоны, e-mail" />
@@ -22,41 +23,65 @@
     }
     </script>
     {% endblock %}
-
+{% block header_class %}
+<header class="wrapper" style="background-color: #e9ffee;">
+{% endblock %}
 {% block content %}
     <div class="content-wrapper">
-        <section class="wrapper bg-light">
-            <div class="container pt-3">
-                <nav aria-label="breadcrumb">
-                  <ol class="breadcrumb" id="breadcrumblist" itemscope itemtype="http://schema.org/BreadcrumbList">
-                    <li class="breadcrumb-item" itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
-                        <a itemprop="item" href="/">Домашняя страница</a>
-                        <meta itemprop="position" content="1" />
-                        <meta itemprop="name" content="Домашняя страница"/>
-                    </li>
-                    <li class="breadcrumb-item active" aria-current="page" itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
-                        <a class="inactiveLink" itemprop="item" href="{% url 'contact' %}">Контакты</a>
-                        <meta itemprop="position" content="2" />
-                        <meta itemprop="name" content="Контакты"/>
-                    </li>
-                  </ol>
-                </nav>
-            </div>
-        </section>
-        <section class="wrapper bg-light">
-            <div class="container pt-3 pb-20 pt-md-3 pb-md-21 text-center">
-                <div class="row">
-                    <div class="col-lg-8 mx-auto">
-                        <h1 class="display-1 mb-3">Будем рады встрече</h1>
-                                               <!-- /nav -->
-                    </div>
-                    <!-- /column -->
+        <div  style="background-color: #e9ffee;">
+            <section class="wrapper">
+                <div class="container pt-3">
+                    <nav aria-label="breadcrumb">
+                      <ol class="breadcrumb" id="breadcrumblist" itemscope itemtype="http://schema.org/BreadcrumbList">
+                        <li class="breadcrumb-item" itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+                            <a itemprop="item" href="/">Главная</a>
+                            <meta itemprop="position" content="1" />
+                            <meta itemprop="name" content="Главная"/>
+                        </li>
+                        <li class="breadcrumb-item active" aria-current="page" itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+                            <a class="inactiveLink" itemprop="item" href="{% url 'contact' %}">Контакты</a>
+                            <meta itemprop="position" content="2" />
+                            <meta itemprop="name" content="Контакты"/>
+                        </li>
+                      </ol>
+                    </nav>
                 </div>
-                <!-- /.row -->
-            </div>
-            <!-- /.container -->
-        </section>
+            </section>
+            <section class="wrapper">
+                <div class="container pt-3 pb-20 pt-md-3 pb-md-21 text-center">
+                    <div class="row">
+                        <div class="col-lg-8 mx-auto">
+                            <h1 class="display-1 mb-3">Будем рады встрече</h1>
+                                                   <!-- /nav -->
+                        </div>
+                        <!-- /column -->
+                    </div>
+                    <!-- /.row -->
+                </div>
+                <!-- /.container -->
+            </section>
+        </div>
         <!-- /section -->
+        {% if error %}
+            <div class="modal" tabindex="-1" role="dialog" aria-hidden="false">
+              <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title">Успешно отправлено!</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                  <div class="modal-body">
+                    Письмо успешно отправлено! Вам ответят скоро.
+                  </div>
+                </div>
+              </div>
+            </div>
+        {% else %}
+        
+        {% endif %}
+        
         <section class="wrapper bg-light angled upper-end">
             <div class="container pb-11">
                 <div class="row mb-14 mb-md-16">
@@ -66,7 +91,7 @@
                             <div class="row gx-0">
                                 <div class="col-lg-6 align-self-stretch">
                                     <div class="map map-full rounded-top rounded-lg-start">
-                                                                                <script type="text/javascript" charset="utf-8" async src="https://api-maps.yandex.ru/services/constructor/1.0/js/?um=constructor%3A0dda2d3e5010f0da4a68ac3d129f76be8e13c2645fc25078d60673c50a612879&amp;width=100%&amp;height=100%&amp;lang=ru_RU&amp;scroll=true"></script>
+                                                                                <script type="text/javascript" charset="utf-8" async src="https://api-maps.yandex.ru/services/constructor/1.0/js/?um=constructor%3A0dda2d3e5010f0da4a68ac3d129f76be8e13c2645fc25078d60673c50a612879&amp;width=100%&amp;height=100%&amp;lang=ru_RU&amp;scroll=true" alt="Будем рады встрече "></script>
 
                                     </div>
                                     <!-- /.map -->
@@ -81,7 +106,7 @@
                                             </div>
                                             <div class="align-self-start justify-content-start">
                                                 <h5 class="mb-1">Офис</h5>
-                                                <address>ул. М. Лынькова 125 <br class="d-none d-md-block"/>Беларусь, г. Минск, 220033
+                                                <address>ул. Льва Толстого 10 <br class="d-none d-md-block"/>Беларусь, г. Минск, 220007
                                                 </address>
 
                                             </div>
@@ -94,7 +119,7 @@
                                             </div>
                                             <div>
                                                 <h5 class="mb-1">Телефоны для связи</h5>
-                                                <p>+375 (29) 392 44 92<br class="d-none d-md-block"/>+375 (29) 700 44 92
+                                                <p>+375 (29) 392 44 92<br class="d-none d-md-block"/>+375 (17) 377 20 03
                                                 </p>
                                             </div>
                                         </div>
@@ -106,7 +131,7 @@
                                             </div>
                                             <div>
                                                 <h5 class="mb-1">E-mail</h5>
-                                                <p class="mb-0"><a href="mailto:help@sandbox.com" class="link-body">info@rpro.by</a>
+                                                <p class="mb-0"><a href="mailto:info@rpro.by" class="link-body">info@rpro.by</a>
                                                 </p>
                                             </div>
                                         </div>
@@ -129,15 +154,18 @@
                     <div class="col-lg-10 offset-lg-1 col-xl-8 offset-xl-2">
                         <h2 class="display-4 mb-3 text-center">Написать нам</h2>
                         <p class="lead text-center mb-10">Это письмо получит директор и руководители структурных подразделений компании</p>
-                        <form class="contact-form" method="post" action="src/php/contact.php">
+                        <form class="form" method="post" action="{% url 'contact' %}">
+                            <!-- face input for bots -->
+                            <input type="email" name="email" value="" style="position: absolute; left: -8595px; display: none">
+                            {% csrf_token %}
                             <div class="messages"></div>
                             <div class="controls">
                                 <div class="row gx-4">
                                     <div class="col-md-6">
                                         <div class="form-label-group mb-4">
                                             <input id="form_name" type="text" name="name" class="form-control"
-                                                   placeholder="Jane" required="required"
-                                                   data-error="First Name is required.">
+                                                   placeholder="Ибрагимов" required="required"
+                                                   data-error="Заполните поле">
                                             <label for="form_name">Имя *</label>
                                             <div class="help-block with-errors"></div>
                                         </div>
@@ -146,8 +174,8 @@
                                     <div class="col-md-6">
                                         <div class="form-label-group mb-4">
                                             <input id="form_lastname" type="text" name="surname" class="form-control"
-                                                   placeholder="Doe" required="required"
-                                                   data-error="Last Name is required.">
+                                                   placeholder="Олег" required="required"
+                                                   data-error="Заполните поле">
                                             <label for="form_lastname">Фамилия *</label>
                                             <div class="help-block with-errors"></div>
                                         </div>
@@ -155,9 +183,9 @@
                                     <!-- /column -->
                                     <div class="col-md-6">
                                         <div class="form-label-group mb-4">
-                                            <input id="form_email" type="email" name="email" class="form-control"
-                                                   placeholder="jane.doe@example.com" required="required"
-                                                   data-error="Valid email is required.">
+                                            <input id="form_email" type="email" name="email_real" class="form-control"
+                                                   placeholder="someone@rpro.by" required="required"
+                                                   data-error="Ввод Email обязателен">
                                             <label for="form_email">Email *</label>
                                             <div class="help-block with-errors"></div>
                                         </div>
@@ -166,7 +194,7 @@
                                     <div class="col-md-6">
                                         <div class="form-label-group mb-4">
                                             <input id="form_phone" type="tel" name="phone" class="form-control"
-                                                   placeholder="Your phone number">
+                                                   placeholder="Ваш телефонный номер">
                                             <label for="form_phone">Телефон</label>
                                             <div class="help-block with-errors"></div>
                                         </div>
@@ -175,8 +203,8 @@
                                     <div class="col-12">
                                         <div class="form-label-group mb-4">
                                             <textarea id="form_message" name="message" class="form-control"
-                                                      placeholder="Your message" rows="5" required="required"
-                                                      data-error="Message is required."></textarea>
+                                                      placeholder="Сообщение" rows="5" required="required"
+                                                      data-error="Заполните поле"></textarea>
                                             <label for="form_message">Сообщение *</label>
                                             <div class="help-block with-errors"></div>
                                         </div>
@@ -203,7 +231,7 @@
         </section>
         <!-- /section -->
         <section class="wrapper image-wrapper bg-auto no-overlay bg-image text-center bg-map"
-                 data-image-src={% static "/img/map.png"%}>
+                 data-image-src={% static "/img/map.png"%} alt="Будем рады встрече 1">
             <div class="container pt-0 pb-14 pt-md-16 pb-md-18">
                 <div class="row">
                     <div class="col-lg-9 col-xxl-8 mx-auto">
@@ -216,21 +244,7 @@
                 <div class="row">
                     <div class="col-md-10 col-lg-9 col-xl-7 mx-auto">
                         <div class="row align-items-center counter-wrapper gy-4 gy-md-0">
-                            <div class="col-md-4 text-center">
-                                <h3 class="counter counter-lg text-primary">70</h3>
-                                <p>Заготовительных пунктов</p>
-                            </div>
-                            <!--/column -->
-                            <div class="col-md-4 text-center">
-                                <h3 class="counter counter-lg text-primary">120</h3>
-                                <p>Активных сотрудников</p>
-                            </div>
-                            <!--/column -->
-                            <div class="col-md-4 text-center">
-                                <h3 class="counter counter-lg text-primary">100%</h3>
-                                <p>Охвата территории РБ</p>
-                            </div>
-                            <!--/column -->
+                          
                         </div>
                         <!--/.row -->
                     </div>

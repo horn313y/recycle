@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
 {% load static %}
-    {% block page_title %}Скупка радиодеталей{% endblock %}
+    {% block page_title %}Скупка радиодеталей в Минске и Беларуси. Прием радиодеталей — «РесайклПро»{% endblock %}
+    {% block meta_description %} Скупка радиодеталей в Минске и по всей Беларуси. ✅ Более 10-ти приемных пунктов. ✅ Самые высокие цены. ✅ Прайс-лист с ценами на сайте. ☎ +375 (29) 110-33-04. {% endblock %}
     {% block opg %}
     <meta property="og:title" content="Скупка радиодеталей в Минске и Беларуси. Прием радиодеталей — «РесайклПро»" />
     <meta property="og:description" content="Скупка радиодеталей в Минске и по всей Беларуси. ✅ Более 10-ти приемных пунктов. ✅ Самые высокие цены. ✅ Прайс-лист с ценами на сайте. ☎ +375 (29) 110-33-04." />
@@ -68,9 +69,9 @@
                 <nav aria-label="breadcrumb">
                   <ol class="breadcrumb" id="breadcrumblist" itemscope itemtype="http://schema.org/BreadcrumbList">
                     <li class="breadcrumb-item" itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
-                        <a itemprop="item" href="/">Домашняя страница</a>
+                        <a itemprop="item" href="/">Главная</a>
                         <meta itemprop="position" content="1" />
-                        <meta itemprop="name" content="Домашняя страница"/>
+                        <meta itemprop="name" content="Главная"/>
                     </li>
                     <li class="breadcrumb-item active" aria-current="page" itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
                         <a class="inactiveLink" itemprop="item" href="{% url 'skupka'  %}">Скупка радиодеталей</a>
@@ -137,7 +138,7 @@
                                             <h2 class="post-title h3">{{ category.cat_name }}</h2>
                                         </div>
                                         <figure class="lift rounded mb-6"><a href="{% url 'products' category.cat_slug %}"> <img
-                                                src={{ category.cat_image.url }} alt=""/></a></figure>
+                                                src={{ category.cat_image.url }} alt="Скупка радиодеталей"/></a></figure>
                                         <div class="project-details d-flex justify-content-center flex-column">
 
                                             <!-- /.post-header -->
@@ -213,7 +214,7 @@
 
                                                 <div>{% for punkt in region.punkt_set.all %}
                                             <div>
-                                                   <img src="{{ punkt.punkt_image.url}}" width="100">
+                                                   <img src="{{ punkt.punkt_image.url}}" alt="Скупка радиодеталей" width="100">
                                                     {{ punkt.punkt_name }}
                                                     </div>
                                                     {% endfor %}</div>
@@ -228,7 +229,7 @@
 							</div>
 							<!--/column -->
                             <div class="col-lg-6">
-                                <script type="text/javascript" charset="utf-8" async src="https://api-maps.yandex.ru/services/constructor/1.0/js/?um=constructor%3Aee34905b75ecae79d8648305556c3802f77efa01900e4bbba72efc1daaed650d&amp;width=100%&amp;height=500&amp;lang=ru_RU&amp;scroll=true"></script>
+                                <script type="text/javascript" charset="utf-8" async src="https://api-maps.yandex.ru/services/constructor/1.0/js/?um=constructor%3Aee34905b75ecae79d8648305556c3802f77efa01900e4bbba72efc1daaed650d&amp;width=100%&amp;height=500&amp;lang=ru_RU&amp;scroll=true" alt="Скупка радиодеталей"></script>
                             </div>
                         </div>
 						<!--/.row -->
@@ -252,7 +253,7 @@
                              data-responsive='{"0":{"items": "1"}, "768":{"items": "2"}, "992":{"items": "2"}, "1200":{"items": "3"}}'>
                             <div class="item">
                                 <img class="rounded-circle w-20 mx-auto mb-4"
-                                     src={% static "/img/avatars/t1.jpg" %} alt=""/>
+                                     src={% static "/img/avatars/t1.jpg" %} alt="Скупка радиодеталей"/>
                                 <div class="mb-1 h4like">Сергей Некало</div>
                                 <div class="meta mb-2">специалист-приемщик</div>
                                 <p class="mb-2">г. Гродно, ул. Гаражная 6</p>
@@ -267,7 +268,7 @@
                             <!-- /.item -->
                             <div class="item">
                                 <img class="rounded-circle w-20 mx-auto mb-4"
-                                     src={% static "/img/avatars/t2.jpg" %} alt=""/>
+                                     src={% static "/img/avatars/t2.jpg" %} alt="Скупка радиодеталей"/>
                                 <div class="mb-1 h4like">Евгений Шершнев</div>
                                 <div class="meta mb-2">специалист-приемщик</div>
                                 <p class="mb-2">г. Гомель, ул. Гагарина 57</p>
@@ -282,7 +283,7 @@
                             <!-- /.item -->
                             <div class="item">
                                 <img class="rounded-circle w-20 mx-auto mb-4"
-                                     src={% static "/img/avatars/t3.jpg" %} alt=""/>
+                                     src={% static "/img/avatars/t3.jpg" %} alt="Скупка радиодеталей"/>
                                 <div class="mb-1 h4like">Евгений Кучинский</div>
                                 <div class="meta mb-2">специалист-приемщик</div>
                                 <p class="mb-2">г. Могилев, пер. Березовский 5</p>
@@ -296,8 +297,8 @@
                             </div>
                             <!-- /.item -->
                             <div class="item">
-                                <img class="rounded-circle w-20 mx-auto mb-4" src="{% static '/img/avatars/t4.jpg' %}"
-                                     srcset="{% static '/img/avatars/t4@2x.jpg' %}" alt=""/>
+                                <img class="rounded-circle w-20 mx-auto mb-4" src="{% static '/img/avatars/t4.jpg' %}" alt="Скупка радиодеталей"
+                                     srcset="{% static '/img/avatars/t4@2x.jpg' %}" alt="Скупка радиодеталей"/>
                                 <div class="mb-1 h4like">Jackie Sanders</div>
                                 <div class="meta mb-2">Investment Planner</div>
                                 <p class="mb-2">Nullam risus eget urna mollis ornare vel eu leo.</p>
@@ -310,8 +311,8 @@
                             </div>
                             <!-- /.item -->
                             <div class="item">
-                                <img class="rounded-circle w-20 mx-auto mb-4" src="{% static '/img/avatars/t5.jpg' %}"
-                                     srcset="{% static '/img/avatars/t5@2x.jpg' %}" alt=""/>
+                                <img class="rounded-circle w-20 mx-auto mb-4" src="{% static '/img/avatars/t5.jpg' %}" alt="Скупка радиодеталей"
+                                     srcset="{% static '/img/avatars/t5@2x.jpg' %}" alt="Скупка радиодеталей"/>
                                 <div class="mb-1 h4like">Tina Geller</div>
                                 <div class="meta mb-2">Assistant Buyer</div>
                                 <p class="mb-2">Vivamus sagittis lacus vel augue laoreet rutrum.</p>

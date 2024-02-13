@@ -565,7 +565,7 @@ progress {
 }
 
 .blockquote-footer::before {
-    content: "\2014\00A0";
+    content: "\201C";
 }
 
 .img-fluid {
@@ -4953,8 +4953,8 @@ textarea.form-control-lg {
     }
 
     .navbar-expand-lg .navbar-nav .nav-link {
-        padding-right: 1rem;
-        padding-left: 1rem;
+        padding-right: 0.5rem;
+        padding-left: 0.5rem;
     }
 
     .navbar-expand-lg .navbar-nav-scroll {
@@ -25704,7 +25704,7 @@ figure img {
 }
 
 .bg-gradient-primary {
-    background: linear-gradient(180deg, #f4faf8, rgba(255, 255, 255, 0) 100%);
+    background: linear-gradient(180deg, #e9ffee, rgba(255, 255, 255, 0) 100%);
 }
 
 .bg-gradient-reverse-primary {
@@ -26534,7 +26534,7 @@ blockquote.icon {
 }
 
 blockquote.icon:before {
-    content: "\201D";
+    content: "\201C";
     position: absolute;
     top: -1.5rem;
     left: -0.9rem;
@@ -38806,7 +38806,7 @@ footer.bg-dark.angled.lower-start:after, footer.bg-dark.angled.upper-start:befor
 }
 
 .ratio-16x9 {
-    --bs-aspect-ratio: calc(9 / 16 * 100%);
+    --bs-aspect-ratio: calc(6 / 16 * 100%);
 }
 
 .ratio-21x9 {
@@ -38981,9 +38981,7 @@ footer.bg-dark.angled.lower-start:after, footer.bg-dark.angled.upper-start:befor
 
     }
 
-    .logoimg {
-        max-width: 170px!important;
-    }
+ 
     .calcItemGroup {
 
         padding-left: 10px;
@@ -39116,6 +39114,12 @@ footer.bg-dark.angled.lower-start:after, footer.bg-dark.angled.upper-start:befor
 }
 
 
+#searchfield{
+    height: 70px;
+    font-size: 24px;
+}
+
+
 .productsheader{
     margin-top: 0;
     margin-bottom: 0.5rem;
@@ -39126,3 +39130,24 @@ footer.bg-dark.angled.lower-start:after, footer.bg-dark.angled.upper-start:befor
     font-size:14px;
     min-height: 46px;
 }
+
+@media (max-width: 500px) {
+    .mobile-hidden {display:none;}
+    .pvw-title span {
+        display: none;
+      }
+      .pvw-title:after {
+        content: 'ЛК';
+      }
+
+    .logoimg {
+        max-width: 80px;
+    }}
+
+    .bgreen {
+        background-color: var( --bs-green) !important;
+        
+      }
+
+   .whitemenu{color:#fff !important;}
+  
