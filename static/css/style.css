@@ -39135,7 +39135,7 @@ footer.bg-dark {
     height: 100%;
     display: inline-block;
     vertical-align: baseline;
-    background-size: cover
+    background-size: contain;
 }
 
 video::-webkit-media-controls {
@@ -39416,7 +39416,7 @@ body>div.content-wrapper>section>div>div>div>p>a {
 
 
 
-
+/* 
 
 
 @media (min-width: 768px) {
@@ -39505,7 +39505,7 @@ body>div.content-wrapper>section>div>div>div>p>a {
   
     
     flex-direction: column;
-  }
+  } */
 
   @media (min-width: 768px) {
     .page-frame {

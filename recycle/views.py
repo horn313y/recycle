@@ -233,6 +233,7 @@ class Empl(View):
     def get(self,request,agentid):
         agent = Agent.objects.get(id=agentid)
         return render(request, 'empl.html',{'agent':agent})
+
 class Policy(View):
     def get(self, request):
         
@@ -261,3 +262,8 @@ class Login(View):
         else:
             return HttpResponse('доступ запрещен')
     
+class Vyezd(View):
+    def get(self,request):
+        categorys = Category.objects.all()
+        product = Product.objects.annotate(price_as_float = Cast('product_price', output_field=FloatField())).order_by('-price_as_float')
+        return render(request, 'vyezd.html', {'categorys':categorys,'product':product})

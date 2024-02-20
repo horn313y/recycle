@@ -52,6 +52,7 @@ urlpatterns = [
     path('news/<str:article_slug>', views.ArticleView.as_view(), name='article'),
     path('priem-bytovoy-tehniki', views.Bytov.as_view(), name='priem'),
     path('vyvos-bytovoy-tehniki', views.Vyvoz.as_view(), name='vyvoz'),
+    path('vyezdnaya-zagotovka', views.Vyezd.as_view(), name='vyezd'),
     path('utilizaciya-tehniki', views.Yuriki.as_view(), name='yuriki'),
     path('bezvozmezdnaya', views.Bezvozmezdno.as_view(), name='bezvozm'),
     path('skupka-katalizatorov', views.Catalizator.as_view(), name='catalizator'),

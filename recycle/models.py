@@ -120,3 +120,12 @@ class Agent(models.Model):
 
     def __str__(self):
         return self.agent_name
+    
+class Tweet(models.Model):
+    article_name = models.CharField('Заголовок', max_length=200) 
+    article_short_desc = models.TextField('Текст', blank=True)
+    article_image = models.ImageField('Изображение', blank=True)
+    pub_date = models.DateTimeField(default=datetime.datetime.now)
+
+    def __str__(self):
+        return self.article_name

@@ -113,9 +113,10 @@
 {% endblock %}
 {% block content %}
 <div class="content-wrapper">
-    <section class="video-wrapper bg-overlay ratio ratio-16x9">
-        <video poster="./assets/img/photos/movie2.jpg" src="{% static '/media/movie2.mp4' %}" autoplay loop playsinline muted></video>
-        <div class="video-content">
+    <section class="video-wrapper bg-overlay">
+      <div class="video-after" >
+        <video poster="./assets/img/photos/movie2.jpg" src="{% static '/media/IMG_3622.MOV' %}" autoplay loop playsinline muted></video>
+      </div><div class="video-content header12">
         <div class="container py-14 py-md-10">
           <div class="row gx-lg-8 gx-xl-12 gy-10 align-items-center">
 
@@ -173,7 +174,7 @@
       <section class="wrapper bg-light">
         <div class="container py-14 py-md-12">
           <div class="row gx-lg-8 gx-xl-12 gy-10">
-            <div class="col-lg-6 mb-0">
+            <div class="col-lg-6 mb-0 decorated-yellow">
               
               <h3 class="display-5 mb-4">Услуги для юридических лиц</h3>
               <p class="lead mb-6">Мы предоставляем услуги по утилизации оборудования с полным сопровождением всего процесса сделки</p>
