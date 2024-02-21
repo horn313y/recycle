@@ -39391,11 +39391,11 @@ body>div.content-wrapper>section>div>div>div>p>a {
 }
 
 .card_mainpage_header{
-    font-size: 14px;
-    font-weight:600;
+    font-size: 14px!important;
+    font-weight:600!important;
 }
 .card_mainpage_text{
-    font-size:12px;
+    font-size:12px!important;
 }
 
 .image-callback {

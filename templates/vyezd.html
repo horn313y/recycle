@@ -24,11 +24,11 @@
         <div class="row">
             <div class="col-md-10 col-lg-8 col-xl-8 col-xxl-6 mx-auto mb-13">
               
-                <h1 class="display-1 mb-4">Купим радиодетали с бесплатным выездом</h1>
+                <h1 class="display-1 mb-4">Купим радиодетали и катализаторы с бесплатным выездом</h1>
                 <p class="lead fs-lg px-xl-12 px-xxl-6 mb-7">Свяжитесь с нами и закажите бесплатный выезд в любую точку
                     Беларуси</p>
                 <div class="d-flex justify-content-center">
-                    <span><a href="#" class="btn btn-primary rounded-pill m-3">Заказать звонок</a></span>
+                    <span><a href="#" class="btn btn-primary rounded-pill m-3">Заказать бесплатный выезд</a></span>
                     
                 </div>
             
@@ -84,7 +84,7 @@
         <div class="col-lg-4 mt-lg-2">
           <h2 class="fs-15 text-uppercase text-muted mb-3">каталог радиодеталей</h2>
           <h3 class="display-4 mb-3 pe-xxl-5">Принимаем более 500 варинатов деталей и плат</h3>
-          <p class="lead fs-lg mb-0 pe-xxl-5">Весь перечени принимаемого материала смотрите в каталоге <a href="{% url 'category' %}" class="btn btn-outline-primary rounded-pill m-3">Каталог радиодеталей</a></p>
+          <p class="lead fs-lg mb-0 pe-xxl-5">Весь перечень принимаемого материала смотрите в каталоге <a href="{% url 'category' %}" class="btn btn-outline-primary rounded-pill m-3">Каталог радиодеталей</a></p>
         </div>
         <!-- /column -->
         <div class="col-lg-8">
@@ -133,67 +133,55 @@
   <!-- /section -->
 
 
-
-
-
   <section class="wrapper bg-light">
-    <div class="container">
-      <div class="row gx-md-8 gx-xl-12 gy-10">
-        <div class="col-lg-6">
-          <div class="d-flex flex-row">
-            <div>
-              <span class="icon btn btn-sm btn-circle btn-primary pe-none me-5"><i class="uil uil-comment-exclamation"></i></span>
-            </div>
-            <div>
-              <h4>Поможем выгоднее сдать материал</h4>
-              <p class="mb-0">Наши специалисты всегда подскажут как выгоднее сдать радиодетали: отдельно или в сборе. При необходимости также помогут с возникающими вопросами</p>
-            </div>
-          </div>
-        </div>
-        <!-- /column -->
-        <div class="col-lg-6">
-          <div class="d-flex flex-row">
-            <div>
-              <span class="icon btn btn-sm btn-circle btn-primary pe-none me-5"><i class="uil uil-comment-exclamation"></i></span>
-            </div>
-            <div>
-              <h4>Рассчитываем наличными на месте</h4>
-              <p class="mb-0">Мы гарантируем выплаты наличными за материал в момент, когда вы сдаете его в РесайклПро. Без задержек и отложенных переводов на карты.</p>
-            </div>
-          </div>
-        </div>
-        <!-- /column -->
-        <div class="col-lg-6">
-          <div class="d-flex flex-row">
-            <div>
-              <span class="icon btn btn-sm btn-circle btn-primary pe-none me-5"><i class="uil uil-comment-exclamation"></i></span>
-            </div>
-            <div>
-              <h4>Выгодные закупочные цены</h4>
-              <p class="mb-0">Высокие и честные цены на скупаемые позиции.
-                Предоставляем специальные условия для клиентов, в зависимости от количества материала.</p>
-            </div>
-          </div>
-        </div>
-        <!-- /column -->
-        <div class="col-lg-6">
-          <div class="d-flex flex-row">
-            <div>
-              <span class="icon btn btn-sm btn-circle btn-primary pe-none me-5"><i class="uil uil-comment-exclamation"></i></span>
-            </div>
-            <div>
-              <h4>Выезжаем в любые регионы Беларуси</h4>
-              <p class="mb-0">Специалисты компании РесайклПро готовы бесплатно приехать в любой уголок Беларуси, чтобы Вы могли с удобством и выгодой сдать материал.</p>
-            </div>
-          </div>
+    <div class="container py-10 py-md-10">
+      <div class="row">
+        <div class="col-lg-8 col-xl-7 col-xxl-8">
+          <h2 class="fs-15 text-uppercase text-muted mb-3">Выгодно, официально и надежно</h2>
+          <h3 class="display-4 mb-9">Мы обеспечиваем стабильность в работе и открыты к обсуждению лучших условий сделок</h3>
         </div>
         <!-- /column -->
       </div>
       <!-- /.row -->
+      <div class="row gx-md-8 gy-8">
+        <div class="col-md-6 col-lg-3">
+          <div class="icon btn btn-block btn-lg btn-soft-leaf pe-none mb-5"> <i class="uil uil-money-stack"></i> </div>
+          <h4>Поможем выгоднее сдать материал</h4>
+          <p class="mb-3">Наши специалисты всегда подскажут как выгоднее сдать радиодетали: отдельно или в сборе. При необходимости также помогут с возникающими вопросами</p>
+
+        </div>
+        <!--/column -->
+        <div class="col-md-6 col-lg-3">
+          <div class="icon btn btn-block btn-lg btn-soft-leaf pe-none mb-5"> <i class="uil uil-money-insert"></i> </div>
+          <h4>Рассчитываем наличными на месте</h4>
+          <p class="mb-3">Мы гарантируем выплаты наличными за материал в момент, когда вы сдаете его в РесайклПро. Без задержек и отложенных переводов на карты.</p>
+
+        </div>
+        <!--/column -->
+        <div class="col-md-6 col-lg-3">
+          <div class="icon btn btn-block btn-lg btn-soft-leaf pe-none mb-5"> <i class="uil uil-chart-growth"></i> </div>
+          <h4>Выгодные закупочные цены</h4>
+          <p class="mb-3">Высокие и честные цены на скупаемые позиции.
+            Предоставляем специальные условия для клиентов, в зависимости от количества материала.</p>
+
+        </div>
+        <!--/column -->
+        <div class="col-md-6 col-lg-3">
+          <div class="icon btn btn-block btn-lg btn-soft-leaf pe-none mb-5"> <i class="uil uil-truck"></i> </div>
+          <h4>Выезжаем в любые регионы Беларуси</h4>
+          <p class="mb-3">Специалисты компании РесайклПро готовы бесплатно приехать в любой уголок Беларуси, чтобы Вы могли с удобством и выгодой сдать материал.</p>
+
+        </div>
+        <!--/column -->
+      </div>
+      <!--/.row -->
     </div>
     <!-- /.container -->
   </section>
   <!-- /section -->
+
+
+  
   
   <section class="wrapper bg-light wrapper-border">
     <div class="container py-10">

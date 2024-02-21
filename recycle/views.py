@@ -67,7 +67,8 @@ class CategoryView(View):
     def get(self, request):
         categorys = Category.objects.all()
         tweets = Tweet.objects.filter(tweet_type='Выезд').order_by("-pub_date")[:1]
-        return render(request, 'categorys.html', {'categorys': categorys,'tweets':tweets})
+        regions = Region.objects.all()
+        return render(request, 'categorys.html', {'categorys': categorys,'tweets':tweets,'regions':regions})
 
 
 class Products(View):
@@ -172,7 +173,8 @@ class RegionView(View):
     def get(self, request, region_slug):
         region = Region.objects.get(region_slug=region_slug)
         categorys = Category.objects.all()
-        return render(request, 'regionpage.html', {'region': region, 'categorys': categorys})
+        tweets = Tweet.objects.filter(tweet_type='Выезд').order_by("-pub_date")[:2]
+        return render(request, 'regionpage.html', {'region': region, 'categorys': categorys,'tweets':tweets})
 
 
 class Spisanie(View):
