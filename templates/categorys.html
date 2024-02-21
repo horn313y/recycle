@@ -85,7 +85,7 @@
 					<div class="col-md-8 col-lg-7 col-xl-6 col-xxl-12">
 						<h1 class="display-1 mb-3">Скупаем радиолом оптом и в розницу</h1>
 						
-						<a href="https://t.me/Clientrpro_bot"  class="btn btn-primary rounded-pill m-2"><i class="uil uil-telegram"></i> Отправить фото в Телеграм</a>  <a href={% static 'materials/price.pdf' %} class="btn btn-outline-primary rounded-pill m-2">Прайс-лист на детали и платы</a> <a href={% static 'materials/price-ustroistva.pdf' %} class="btn btn-outline-primary rounded-pill m-2">Прайс-лист на устройства</a>
+						<a href="https://t.me/Clientrpro_bot"  class="btn btn-primary rounded-pill m-2"><i class="uil uil-telegram"></i> Отправить фото на оценку</a>  <a href={% static 'materials/price.pdf' %} class="btn btn-outline-primary rounded-pill m-2">Прайс-лист на детали и платы</a> <a href={% static 'materials/price-ustroistva.pdf' %} class="btn btn-outline-primary rounded-pill m-2">Прайс-лист на устройства</a>
 						<a href="{% url 'catalizator' %}" class="btn btn-outline-primary rounded-pill m-2">Катализаторы</a>
 
 					</div>
@@ -105,18 +105,30 @@
                         {% for category in categorys %}
 
 						{% if forloop.counter == 3 %}
+						{% if tweets.first.tweet_type == 'Выезд'%}
 						<div class="project item col-md-6 col-xl-4 product">
 							<div class="post-header">
-										<div class="post-title h3">Выездная заготовка</div>
-									</div>
-									<div class="shape bg-dot ash w-18 h-18"></div>
-								<div class="project-details d-flex justify-content-center flex-column">
-	
-									цуацуацуацуацуа
-								</div>
-								<!-- /.project-details -->
+								<a class="c-primary" href="{% url 'vyezd'%}"><div class="post-title h3">Выездная заготовка</div></a>
 							</div>
-					{% endif %}
+							<div class="card card-border-start border-primary card_category">
+								<div class="card-body">
+								  <blockquote class="icon mb-0">
+									<span class="badge 
+									{% if tweets.first.tweet_type == 'Новость' %} bg-primary {% endif %}
+									{% if tweets.first.tweet_type == 'Выезд' %} bg-yellow {% endif %}
+									{% if tweets.first.tweet_type == 'Внимание' %} bg-red {% endif %}
+									rounded-pill">{{ tweets.first.tweet_type }}</span> 
+									<div class="card_mainpage_header">{{ tweets.first.tweet_name}}</div>
+									
+									<p class="mb-2 card_mainpage_text">{{ tweets.first.tweet_short_desc }}</p>
+									<a class="c-primary card_mainpage_header" href="{% url 'vyezd'%}"><div>Подробнее о выездной заготовке</div></a>
+								  </blockquote>
+								</div>
+								<!--/.card-body -->
+							</div>
+							<!--/.card -->
+							</div>
+							{% endif %}{% endif %}
 
 
 						<div class="project item col-md-6 col-xl-4 product">

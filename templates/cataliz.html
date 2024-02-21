@@ -1,290 +1,331 @@
 {% extends 'base.html' %}
 {% load static thumbnail editorjs %}
 
-
 {% block page_title %}Сдать катализатор в Минске, цена | Скупка автомобильных катализаторов{% endblock %}
-{% block meta_description %} Прием катализаторов в «РесайклПро» ⯈ Самые актуальные и высокие цены ⯈ Точки скупки по всей Беларуси ⯈ Моментальная выплата ⯈ Оставьте заявку и мы перезвоним Вам! {% endblock %}
-
+{% block meta_description %} Прием катализаторов в «РесайклПро» ⯈ Самые актуальные и высокие цены ⯈ Точки скупки по всей
+Беларуси ⯈ Моментальная выплата ⯈ Оставьте заявку и мы перезвоним Вам! {% endblock %}
 
 <div itemscope itemtype="http://schema.org/Product">
-    <span itemprop="name">test_prod</span>
+  <span itemprop="name">test_prod</span>
 </div>
 
 {% block opg %}
-    <meta property="og:title" content="{{ product.product_title }}" />
-    <meta property="og:description" content="{{ product.product_metadesc }}" />
-    <meta property="og:url" content="{{ request.build_absolute_uri }}" />
-    <meta property="og:image" content="{{ product.product_image.url }}" />
-    <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
+<meta property="og:title" content="{{ product.product_title }}" />
+<meta property="og:description" content="{{ product.product_metadesc }}" />
+<meta property="og:url" content="{{ request.build_absolute_uri }}" />
+<meta property="og:image" content="{{ product.product_image.url }}" />
+<script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
 {% endblock %}
 
 {% block header_class %}
 <header class="wrapper" style="background-color: #e9ffee;">
-{% endblock %}
-{% block content %}
- <section class="wrapper bg-light">
-      <div class="container-card">
-        <div class="card image-wrapper bg-full bg-image mb-5" style="background-color: #e9ffee;">
-          <div class="card-body py-14 px-0">
-            <div class="container">
-              <div class="row gx-md-8 gx-xl-12 gy-10 align-items-center text-center text-lg-start">
-                <div class="col-lg-6" data-cues="slideInDown" data-group="page-title" data-delay="900" data-disabled="true">
+  {% endblock %}
+  {% block content %}
+  <section class="wrapper bg-light">
+    <div class="container-card">
+      <div class="card image-wrapper bg-full bg-image mb-5" style="background-color: #e9ffee;">
+        <div class="card-body py-14 px-0">
+          <div class="container">
+            <div class="row gx-md-8 gx-xl-12 gy-10 align-items-center text-center text-lg-start">
+              <div class="col-lg-6">
 
-                  <h1 class="display-2 mb-4 me-xl-5 me-xxl-0" data-cue="slideInDown" data-group="page-title" data-delay="900" data-show="true" style="animation-name: slideInDown; animation-duration: 700ms; animation-timing-function: ease; animation-delay: 900ms; animation-direction: normal; animation-fill-mode: both;">Прием и переработка автомобильных <span class="text-green">катализаторов</span></h1>
-                  <p class="lead fs-23 lh-sm mb-7 pe-xxl-15" data-cue="slideInDown" data-group="page-title" data-delay="900" data-show="true" style="animation-name: slideInDown; animation-duration: 700ms; animation-timing-function: ease; animation-delay: 1200ms; animation-direction: normal; animation-fill-mode: both;">С точным анализом и прозрачным рассчетом</br></br><a href="#" class="btn btn-lg btn-primary rounded-pill me-2"data-bs-toggle="modal" data-bs-target="#modal-01">Заказать звонок</a></p>
+                <h1 class="display-2 mb-4 me-xl-5 me-xxl-0">Прием и переработка автомобильных <span
+                    class="text-green">катализаторов</span></h1>
+                <p class="lead fs-23 lh-sm mb-7 pe-xxl-15">С точным анализом и прозрачным рассчетом</br></br><a href="#"
+                    class="btn btn-lg btn-primary rounded-pill me-2" data-bs-toggle="modal"
+                    data-bs-target="#modal-01">Заказать звонок</a></p>
 
+              </div>
+              <!--/column -->
+              <div class="col-lg-6">
+
+                <img class="img-fluid " src="{% static '/img/catalizator.png' %}"
+                  srcset="{% static '/img/catalizator.png' %}">
+              </div>
+              <!--/column -->
+            </div>
+            <!-- /.row -->
+          </div>
+          <!-- /.container -->
+        </div>
+        <!--/.card-body -->
+      </div>
+      <!--/.card -->
+    </div>
+    <!-- /.container-card -->
+
+  </section>
+   <div class="container">
+    <div class="row gx-lg-8 gx-xl-12 gy-6 my-10">
+      <h3>Выплаты от количества материала</h3>
+      <div class="table-responsive">
+        <table class="table">
+          <caption>Предложение актуально с 07.12.2023</caption>
+          <thead>
+            <tr>
+              <th scope="col">Вид катализаторов</th>
+              <th scope="col">Розница 10 кг.</th>
+              <th scope="col">10 - 50 кг</th>
+              <th scope="col">50 - 150 кг</th>
+              <th scope="col">150 - 300 кг</th>
+              <th scope="col">300 - 500 кг</th>
+              <th scope="col">Более 500 кг</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Молотый керамический с родием </td>
+              <td>50 % от биржи</td>
+              <td>70% от биржи</td>
+              <td>75% от биржи</td>
+              <td>77% от биржи</td>
+              <td>80% от биржи</td>
+              <td>Договорные цены</td>
+            </tr>
+            <tr>
+              <td>Молотый керамический без родия</td>
+              <td>51% от биржи</td>
+              <td>71% от биржи</td>
+              <td>76% от биржи</td>
+              <td>78% от биржи</td>
+              <td>81% от биржи</td>
+              <td>Договорные цены</td>
+            </tr>
+            <tr>
+              <td>Сажевый</td>
+              <td>50% от биржи</td>
+              <td>69% от биржи</td>
+              <td>72% от биржи</td>
+              <td>77% от биржи</td>
+              <td>79% от биржи</td>
+              <td>Договорные цены</td>
+            </tr>
+            <tr>
+              <td>На металлической основе</td>
+              <td>52% от биржи</td>
+              <td>72% от биржи</td>
+              <td>75% от биржи</td>
+              <td>77% от биржи</td>
+              <td>82% от биржи</td>
+              <td>Договорные цены</td>
+            </tr>
+          </tbody>
+        </table>
+      </div> </div></div>
+
+       <section class="wrapper bg-light">
+        <div class="container py-14 py-md-12">
+          <div class="row gx-lg-8 gx-xl-12 gy-10">
+            <div class="col-lg-6 mb-0 decorated-yellow">
+
+              <h3 class="display-5 mb-4">Хорошие условия работы</h3>
+              <p class="lead mb-6">Проведем закупку материала максимально удобным способом</p>
+              <a href="#" class="btn btn-primary rounded-pill">Заказать звонок</a>
+            </div>
+            <!--/column -->
+            <div class="col-lg-6">
+              <div id="accordion-3" class="accordion-wrapper">
+                <div class="card accordion-item">
+                  <div class="card-header" id="accordion-heading-3-1">
+                    <button class="collapsed" data-bs-toggle="collapse" data-bs-target="#accordion-collapse-3-1"
+                      aria-expanded="false" aria-controls="accordion-collapse-3-1">Бесплатный анализ катализотора с
+                      гарантией соответствия</button>
+                  </div>
+                  <!-- /.card-header -->
+                  <div id="accordion-collapse-3-1" class="collapse" aria-labelledby="accordion-heading-3-1"
+                    data-bs-target="#accordion-3">
+                    <div class="card-body">
+                      <p>Проведем оценку на высокоточном оборудовании с гарантией соотвествия</p>
+                    </div>
+                    <!-- /.card-body -->
+                  </div>
+                  <!-- /.collapse -->
+                </div>
+                <!-- /.card -->
+                <div class="card accordion-item">
+                  <div class="card-header" id="accordion-heading-3-2">
+                    <button class="collapsed" data-bs-toggle="collapse" data-bs-target="#accordion-collapse-3-2"
+                      aria-expanded="false" aria-controls="accordion-collapse-3-2">Самостоятельно вырежем
+                      катализатор</button>
+                  </div>
+                  <!-- /.card-header -->
+                  <div id="accordion-collapse-3-2" class="collapse" aria-labelledby="accordion-heading-3-2"
+                    data-bs-target="#accordion-3">
+                    <div class="card-body">
+                      <p>Проведем демонтаж и другие работы под ключ самостоятельно, бесплатно. При условии сдачи нам</p>
+                    </div>
+                    <!-- /.card-body -->
+                  </div>
+                  <!-- /.collapse -->
+                </div>
+                <!-- /.card -->
+                <div class="card accordion-item">
+                  <div class="card-header" id="accordion-heading-3-3">
+                    <button class="collapsed" data-bs-toggle="collapse" data-bs-target="#accordion-collapse-3-3"
+                      aria-expanded="false" aria-controls="accordion-collapse-3-3">Широкая география работы</button>
+                  </div>
+                  <!-- /.card-header -->
+                  <div id="accordion-collapse-3-3" class="collapse" aria-labelledby="accordion-heading-3-3"
+                    data-bs-target="#accordion-3">
+                    <div class="card-body">
+                      <p>Организуем выездные закупки по вашей заявке (рассчитывается от объема материала)</p>
+                    </div>
+                    <!-- /.card-body -->
+                  </div>
+                  <!-- /.collapse -->
+                </div>
+                <!-- /.card -->
+
+              </div>
+              <!-- /.accordion-wrapper -->
+            </div>
+            <!--/column -->
+          </div>
+          <!--/.row -->
+        </div>
+        <!-- /.container -->
+      </section>
+      <!-- /section --> 
+
+      <section class="wrapper bg-light">
+        <div class="container pb-10">
+          <h2 class="display-4 mb-3">Сдать катализатор</h2>
+
+          <p class="lead fs-lg mb-8"> Сдать катализаторы в Минске и по всей Беларуси можно в нашем <a
+              href=/punkty-priema>приемном пункте</a> или заказать услугу бесплатного вывоз катализаторов. Наши
+              менеджеры приедут в назначенное вами место со всем необходимым оборудованием. Если вам нужна консультация
+              вы можете позвонить нам или <a href="#" data-bs-toggle="modal" data-bs-target="#modal-01">заказать
+              обратный звонок</a></p>
+          </p>
+          <div class="row gx-lg-8 gx-xl-12 gy-6 process-wrapper line">
+            <div class="col-md-6 col-lg-3"><span class="icon btn btn-circle btn-lg btn-soft-primary disabled mb-4"><span
+                  class="number">01</span></span>
+              <div class="mb-1 h4like">Связаться с нами</div>
+              <p>
+                Вы можете посетить наш приемный пункт или заказать вывоз - наши менеджеры приедут в назначенное вами
+                место со всем необходимым оборудованием.
+              </p>
+            </div>
+            <!--/column -->
+            <div class="col-md-6 col-lg-3"><span class="icon btn btn-circle btn-lg btn-soft-primary disabled mb-4"><span
+                  class="number">02</span></span>
+              <div class="mb-1 h4like">Оценка катализатора</div>
+              <p>Мы предоставим точную оценку по содержанию драгоценных металлов и сумме закупки</p>
+            </div>
+            <!--/column -->
+            <div class="col-md-6 col-lg-3"><span class="icon btn btn-circle btn-lg btn-primary disabled mb-4"><span
+                  class="number">03</span></span>
+              <div class="mb-1 h4like">Выплата денежных средств</div>
+              <p>Предоставление всех необходимых документов, выплата наличными сразу на месте.</p>
+            </div>
+            <!--/column -->
+
+          </div>
+          <!--/.row -->
+        </div>
+        <!-- /.container -->
+      </section> 
+       <section class="wrapper bg-light">
+        <div class="container pb-10">
+          <div class="card bg-soft-primary rounded-4">
+            <div class="card-body p-md-10 p-xl-11">
+              <div class="row gx-lg-8 gx-xl-12 gy-10">
+                <div class="col-lg-6">
+                  <h2 class="display-4 mb-4">Часто задаваемые вопросы</h2>
+                  <p class="lead fs-lg mb-0">Если вы не нашли ответа на свой вопрос позвоните нам или закажите <a
+                      href="#" data-bs-toggle="modal" data-bs-target="#modal-01">обратный звонок</a></p>
                 </div>
                 <!--/column -->
                 <div class="col-lg-6">
-                    
- 
+                  <div class="accordion accordion-wrapper" id="accordionExample" itemscope
+                    itemtype="http://schema.org/FAQPage">
+                    <div class="card plain accordion-item" itemprop="mainEntity" itemscope
+                      itemtype="http://schema.org/Question">
+                      <div class="card-header" id="headingOne" itemprop="name">
+                        <button class="collapsed" data-bs-toggle="collapse" data-bs-target="#collapseOne"
+                          aria-expanded="true" aria-controls="collapseOne">Сколько стоит сдать катализатор?
+                        </button>
+                      </div>
+                      <!--/.card-header -->
+                      <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne"
+                        data-bs-parent="#accordionExample" itemscope itemprop="acceptedAnswer"
+                        itemtype="http://schema.org/Answer">
+                        <div class="card-body" itemprop="text">
+                          <p>Цены катализаторы в среднем от 20 до 2500 рублей за одну штуку, в зависимости от содержания
+                            ценных металлов в нем. Чтобы сказать точно нужно провести диагностику - мы сделаем ее для
+                            вас бесплатно.
+                          </p>
+                        </div>
+                        <!--/.card-body -->
+                      </div>
+                      <!--/.accordion-collapse -->
+                    </div>
+                    <!--/.accordion-item -->
+                    <div class="card plain accordion-item" itemprop="mainEntity" itemscope
+                      itemtype="http://schema.org/Question">
+                      <div class="card-header" id="headingTwo" itemprop="name">
+                        <button class="collapsed" data-bs-toggle="collapse" data-bs-target="#collapseTwo"
+                          aria-expanded="false" aria-controls="collapseTwo">Какие можно сдать катализаторы?
+                        </button>
+                      </div>
+                      <!--/.card-header -->
+                      <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo"
+                        data-bs-parent="#accordionExample" itemscope itemprop="acceptedAnswer"
+                        itemtype="http://schema.org/Answer">
+                        <div class="card-body" itemprop="text">
+                          <p>Мы осуществляем скупку всех типов катализаторов, независимо от их состава, включая
+                            керамические, металлические и сажевые фильтры.
+                          </p>
+                        </div>
+                        <!--/.card-body -->
+                      </div>
+                      <!--/.accordion-collapse -->
+                    </div>
+                    <!--/.accordion-item -->
+                    <div class="card plain accordion-item" itemprop="mainEntity" itemscope
+                      itemtype="http://schema.org/Question">
+                      <div class="card-header" id="headingThree" itemprop="name">
+                        <button class="collapsed" data-bs-toggle="collapse" data-bs-target="#collapseThree"
+                          aria-expanded="false" aria-controls="collapseThree">В каком состоянии катализатор подходит для
+                          сдачи?
 
-                  <img class="img-fluid " src="{% static '/img/catalizator.png' %}" srcset="{% static '/img/catalizator.png' %}" data-cue="fadeIn" data-delay="300" alt="" data-show="true" style="animation-name: fadeIn; animation-duration: 700ms; animation-timing-function: ease; animation-delay: 300ms; animation-direction: normal; animation-fill-mode: both;">
+                        </button>
+                      </div>
+                      <!--/.card-header -->
+                      <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree"
+                        data-bs-parent="#accordionExample" itemscope itemprop="acceptedAnswer"
+                        itemtype="http://schema.org/Answer">
+                        <div class="card-body" itemprop="text">
+                          <p>Можно сказать что в любом состоянии - это может немного повлиять на цену
+                          </p>
+                        </div>
+                        <!--/.card-body -->
+                      </div>
+                      <!--/.accordion-collapse -->
+                    </div>
+                    <!--/.accordion-item -->
+
+                  </div>
+                  <!--/.accordion -->
                 </div>
                 <!--/column -->
               </div>
-              <!-- /.row -->
+              <!--/.row -->
             </div>
-            <!-- /.container -->
+            <!--/.card-body -->
           </div>
-          <!--/.card-body -->
+          <!--/.card -->
         </div>
-        <!--/.card -->
-      </div>
-      <!-- /.container-card -->
+        <!-- /.container -->
+      </section> 
 
+      {% endblock %}
 
-
-    </section>
-<div class="container">
-    <div class="row gx-lg-8 gx-xl-12 gy-6 my-10">
-        <h3>Выплаты от количества материала</h3>
-        <div class="table-responsive">
-         <table class="table">
-    <caption>Предложение актуально с 07.12.2023</caption>
-  <thead>
-    <tr>
-      <th scope="col">Вид катализаторов</th>
-      <th scope="col">Розница 10 кг.</th>
-      <th scope="col">10 - 50 кг</th>
-      <th scope="col">50 - 150 кг</th>
-      <th scope="col">150 - 300 кг</th>
-      <th scope="col">300 - 500 кг</th>
-      <th scope="col">Более 500 кг</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>Молотый керамический с родием </td>
-      <td>50 % от биржи</td>
-      <td>70% от биржи</td>
-      <td>75% от биржи</td>
-      <td>77% от биржи</td>
-      <td>80% от биржи</td>
-      <td>Договорные цены</td>
-    </tr>
-    <tr>
-      <td>Молотый керамический без родия</td>
-      <td>51% от биржи</td>
-      <td>71% от биржи</td>
-      <td>76% от биржи</td>
-      <td>78% от биржи</td>
-      <td>81% от биржи</td>
-      <td>Договорные цены</td>
-    </tr>
-    <tr>
-      <td>Сажевый</td>
-      <td>50% от биржи</td>
-      <td>69% от биржи</td>
-      <td>72% от биржи</td>
-      <td>77% от биржи</td>
-      <td>79% от биржи</td>
-      <td>Договорные цены</td>
-    </tr>
-     <tr>
-      <td>На металлической основе</td>
-      <td>52% от биржи</td>
-      <td>72% от биржи</td>
-      <td>75% от биржи</td>
-      <td>77% от биржи</td>
-      <td>82% от биржи</td>
-      <td>Договорные цены</td>
-    </tr>
-  </tbody>
-  </table>
-     </div>   
-        
-        
-        
-        <h3>Хорошие условия работы</h3>
-          <div class="col-lg-4">
-            <div class="d-flex flex-row">
-              <div>
-                <div class="icon btn btn-circle disabled btn-soft-primary me-4"> <span class="number fs-18">1</span> </div>
-              </div>
-              <div>
-                <p><b>Бесплатный анализ катализотора</b></p>
-                <p class="mb-2">Проведем оценку на высокоточном оборудовании с гарантией соотвествия</p>
-              </div>
-            </div>
-          </div>
-          <!--/column -->
-          <div class="col-lg-4">
-            <div class="d-flex flex-row">
-              <div>
-                <div class="icon btn btn-circle disabled btn-soft-primary me-4"> <span class="number fs-18">2</span> </div>
-              </div>
-              <div>
-                <p><b>Самостоятельно вырежем катализатор</b></p>
-                <p class="mb-2">Проведем демонтаж и другие работы под ключ самостоятельно, бесплатно. При условии сдачи нам</p>
-              </div>
-            </div>
-          </div>
-          <!--/column -->
-          <div class="col-lg-4">
-            <div class="d-flex flex-row">
-              <div>
-                <div class="icon btn btn-circle disabled btn-soft-primary me-4"> <span class="number fs-18">3</span> </div>
-              </div>
-              <div>
-                <p><b>Широкая география работы</b></p>
-                <p class="mb-2">Организуем выездные закупки по вашей заявке (рассчитывается от объема материала)</p>
-              </div>
-            </div>
-          </div>
-          <!--/column -->
-        </div>
-</div>
-
-
-    
-
-<section class="wrapper bg-light">
-            <div class="container pb-16">
-                <h2 class="display-4 mb-3">Сдать катализатор</h2>
-                <p>Сдать катализаторы в Минске и по всей Беларуси можно в нашем <a href=/punkty-priema>приемном пункте</a> или заказать услугу бесплатного вывоз катализаторов. Наши менеджеры приедут в назначенное вами место со всем необходимым оборудованием.</p>
-                                <p class="lead fs-lg mb-8">Если вам нужна консультация вы можете позвонить нам или <a href="#" data-bs-toggle="modal" data-bs-target="#modal-01">заказать обратный звонок</a></p>
-</p>
-                <div class="row gx-lg-8 gx-xl-12 gy-6 process-wrapper line">
-                    <div class="col-md-6 col-lg-3"><span
-                            class="icon btn btn-circle btn-lg btn-soft-primary disabled mb-4"><span
-                            class="number">01</span></span>
-                        <div class="mb-1 h4like">Связаться с нами</div>
-                        <p>
-                            Вы можете посетить наш приемный пункт или заказать вывоз - наши менеджеры приедут в назначенное вами место со всем необходимым оборудованием.
-                        </p>
-                    </div>
-                    <!--/column -->
-                    <div class="col-md-6 col-lg-3"><span
-                            class="icon btn btn-circle btn-lg btn-soft-primary disabled mb-4"><span class="number">02</span></span>
-                         <div class="mb-1 h4like">Оценка катализатора</div>
-                        <p>Мы предоставим точную оценку по содержанию драгоценных металлов и сумме закупки</p>
-                    </div>
-                    <!--/column -->
-                     <div class="col-md-6 col-lg-3"><span
-                            class="icon btn btn-circle btn-lg btn-primary disabled mb-4"><span class="number">03</span></span>
-                         <div class="mb-1 h4like">Выплата денежных средств</div>
-                        <p>Предоставление всех необходимых документов, выплата наличными сразу на месте.</p>
-                    </div>
-                    <!--/column -->
-
-                </div>
-                <!--/.row -->
-            </div>
-            <!-- /.container -->
-        </section>
-    <section class="wrapper bg-light">
-            <div class="container pb-10">
-                <div class="card bg-soft-primary rounded-4">
-                    <div class="card-body p-md-10 p-xl-11">
-                        <div class="row gx-lg-8 gx-xl-12 gy-10">
-                            <div class="col-lg-6">
-                             <h2 class="display-4 mb-4">Часто задаваемые вопросы</h2>
-                                <p class="lead fs-lg mb-0">Если вы не нашли ответа на свой вопрос позвоните нам или закажите <a href="#" data-bs-toggle="modal" data-bs-target="#modal-01">обратный звонок</a></p>
-							</div>
-                            <!--/column -->
-                            <div class="col-lg-6">
-                                <div class="accordion accordion-wrapper" id="accordionExample" itemscope itemtype="http://schema.org/FAQPage">
-                                    <div class="card plain accordion-item" itemprop="mainEntity" itemscope itemtype="http://schema.org/Question">
-                                        <div class="card-header" id="headingOne" itemprop="name">
-                                            <button class="collapsed" data-bs-toggle="collapse"
-                                                    data-bs-target="#collapseOne" aria-expanded="true"
-                                                    aria-controls="collapseOne">Сколько стоит сдать катализатор?
-                                            </button>
-                                        </div>
-                                        <!--/.card-header -->
-                                        <div id="collapseOne" class="accordion-collapse collapse"
-                                             aria-labelledby="headingOne" data-bs-parent="#accordionExample" itemscope itemprop="acceptedAnswer" itemtype="http://schema.org/Answer">
-                                            <div class="card-body" itemprop="text">
-                                                <p>Цены катализаторы в среднем от 20 до 2500 рублей за одну штуку, в зависимости от содержания ценных металлов в нем. Чтобы сказать точно нужно провести диагностику - мы сделаем ее для вас бесплатно. 
-</p>
-                                            </div>
-                                            <!--/.card-body -->
-                                        </div>
-                                        <!--/.accordion-collapse -->
-                                    </div>
-                                    <!--/.accordion-item -->
-                                    <div class="card plain accordion-item" itemprop="mainEntity" itemscope itemtype="http://schema.org/Question">
-                                        <div class="card-header" id="headingTwo" itemprop="name">
-                                            <button class="collapsed" data-bs-toggle="collapse"
-                                                    data-bs-target="#collapseTwo" aria-expanded="false"
-                                                    aria-controls="collapseTwo">Какие можно сдать катализаторы?
-                                            </button>
-                                        </div>
-                                        <!--/.card-header -->
-                                        <div id="collapseTwo" class="accordion-collapse collapse"
-                                             aria-labelledby="headingTwo" data-bs-parent="#accordionExample" itemscope itemprop="acceptedAnswer" itemtype="http://schema.org/Answer">
-                                            <div class="card-body" itemprop="text">
-                                                <p>Мы осуществляем скупку всех типов катализаторов, независимо от их состава, включая керамические, металлические и сажевые фильтры.
-</p>
-                                            </div>
-                                            <!--/.card-body -->
-                                        </div>
-                                        <!--/.accordion-collapse -->
-                                    </div>
-                                    <!--/.accordion-item -->
-                                    <div class="card plain accordion-item" itemprop="mainEntity" itemscope itemtype="http://schema.org/Question">
-                                        <div class="card-header" id="headingThree" itemprop="name">
-                                            <button class="collapsed" data-bs-toggle="collapse"
-                                                    data-bs-target="#collapseThree" aria-expanded="false"
-                                                    aria-controls="collapseThree">В каком состоянии катализатор подходит для сдачи?
-
-                                            </button>
-                                        </div>
-                                        <!--/.card-header -->
-                                        <div id="collapseThree" class="accordion-collapse collapse"
-                                             aria-labelledby="headingThree" data-bs-parent="#accordionExample" itemscope itemprop="acceptedAnswer" itemtype="http://schema.org/Answer">
-                                            <div class="card-body" itemprop="text">
-                                                <p>Можно сказать что в любом состоянии - это может немного повлиять на цену
-</p>
-                                            </div>
-                                            <!--/.card-body -->
-                                        </div>
-                                        <!--/.accordion-collapse -->
-                                    </div>
-                                    <!--/.accordion-item -->
-
-                                </div>
-                                <!--/.accordion -->
-                            </div>
-                            <!--/column -->
-                        </div>
-                        <!--/.row -->
-                    </div>
-                    <!--/.card-body -->
-                </div>
-                <!--/.card -->
-            </div>
-            <!-- /.container -->
-        </section>
-
-{% endblock %}
-
-{% block extra_scripts %}
-<script type="text/javascript" src={% static "/js/jquery.zoom.min.js" %}></script>
-<script>
-$(document).ready(function(){
-  $('.jquery-zoom').zoom();
-});
-</script>
-{% endblock %}
+      {% block extra_scripts %}
+      <script type="text/javascript" src={% static "/js/jquery.zoom.min.js" %}></script>
+      <script>
+        $(document).ready(function() {
+          $('.jquery-zoom').zoom();
+        });
+      </script>
+      {% endblock %}

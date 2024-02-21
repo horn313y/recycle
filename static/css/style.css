@@ -24981,7 +24981,7 @@ blockquote.icon:before {
     position: absolute;
     top: -1.5rem;
     left: -.9rem;
-    color: rgba(52, 63, 82, .05);
+    color: rgba(15, 93, 19, 0.1);
     font-size: 10rem;
     line-height: 1;
     z-index: 1
@@ -39384,7 +39384,18 @@ body>div.content-wrapper>section>div>div>div>p>a {
 }
 
 .card_mainpage {
-    min-height: 385px;
+    min-height:230px;
+}
+.card_category {
+    min-height:270px;
+}
+
+.card_mainpage_header{
+    font-size: 14px;
+    font-weight:600;
+}
+.card_mainpage_text{
+    font-size:12px;
 }
 
 .image-callback {

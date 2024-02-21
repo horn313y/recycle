@@ -8,6 +8,12 @@ PURCACHE_CHOICES = (
     ('Штук', 'шт')
 )
 
+TWEET_CHOICES = (
+    ('Новость','Новость'),
+    ('Выезд', 'Выезд'),
+    ('Внимание', 'Внимание'),
+)
+
 
 class Category(models.Model):
     cat_name = models.CharField('Название категории продукта', max_length=200)
@@ -120,3 +126,17 @@ class Agent(models.Model):
 
     def __str__(self):
         return self.agent_name
+
+
+class Tweet(models.Model):
+    tweet_name = models.CharField('Заголовок H1', max_length=200)
+    tweet_slug = models.CharField('URL', max_length=200, default='article' + str(datetime.datetime.now()))
+    tweet_short_desc = models.TextField('Короткое описание для Schema', blank=True)
+    pub_date = models.DateTimeField(default=datetime.datetime.now)
+    tweet_type = models.CharField('Тип заметки', max_length=10, choices=TWEET_CHOICES, blank=True)
+
+    def __str__(self):
+        return self.tweet_name
+
+    def get_absolute_url(self):
+        return reverse('tweet', args=[self.tweet_slug])

@@ -26769,7 +26769,7 @@ blockquote.icon:before {
     position: absolute;
     top: -1.5rem;
     left: -0.9rem;
-    color: rgba(52, 63, 82, 0.05);
+    color: rgba(15, 93, 19, 0.1);
     font-size: 10rem;
     line-height: 1;
     z-index: 1;
@@ -31585,7 +31585,7 @@ button.hamburger:after {
     height: 3px;
     margin: 0 0 5px;
     transition: all 200ms ease-in-out;
-    background: #343f52;
+    background: #fff;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -39687,6 +39687,17 @@ footer.bg-dark.angled.upper-start:before {
     min-height: 46px;
 }
 
+@media (max-width: 1000px) {
+    .mobile-hidden {
+        display: none;
+    }
+
+    .pvw-title {
+       color: #fff !important;;
+    }
+
+}
+
 @media (max-width: 500px) {
     .mobile-hidden {
         display: none;
@@ -39719,7 +39730,7 @@ footer.bg-dark.angled.upper-start:before {
 .decorated-yellow {
     background-color: #fff8ee !important;
     padding: 50px;
-    border-radius: 30px;
+    border-radius: 10px;
     max-height: 300px;
     clip-path: polygon(89% 0, 0 0, 0 100%, 90% 100%, 100% 51%);
 
@@ -39820,3 +39831,5 @@ background: linear-gradient(0deg, rgba(255,255,255,0.7749474789915967) 27%, rgba
             background: rgb(255,255,255);
 background: linear-gradient(0deg, rgba(255,255,255,0.8814119397759104) 20%, rgba(223,233,242,1) 100%);
           }
+
+          .c-primary { color:#367345;}

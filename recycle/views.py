@@ -22,12 +22,13 @@ class Home(View):
     def get(self, request):
         cateory = Category.objects.all()
         articles = Article.objects.all().order_by('-pub_date')[:3] 
+        tweets = Tweet.objects.all().order_by("-pub_date")[:4]
         data = []
         for cat in cateory:
             products = cat.product_set.all()
             data.append({'categoryName': cat.cat_name, 'categoryID': cat.id})
         data = json.dumps(list(data))
-        return render(request, 'index.html', {'articles':articles})
+        return render(request, 'index.html', {'articles':articles,'tweets':tweets})
 
     def post(self, request):
 
@@ -65,7 +66,8 @@ class Opt(View):
 class CategoryView(View):
     def get(self, request):
         categorys = Category.objects.all()
-        return render(request, 'categorys.html', {'categorys': categorys})
+        tweets = Tweet.objects.filter(tweet_type='Выезд').order_by("-pub_date")[:1]
+        return render(request, 'categorys.html', {'categorys': categorys,'tweets':tweets})
 
 
 class Products(View):
@@ -265,5 +267,6 @@ class Login(View):
 class Vyezd(View):
     def get(self,request):
         categorys = Category.objects.all()
+        tweets = Tweet.objects.all().order_by("-pub_date")[:4]
         product = Product.objects.annotate(price_as_float = Cast('product_price', output_field=FloatField())).order_by('-price_as_float')
-        return render(request, 'vyezd.html', {'categorys':categorys,'product':product})
+        return render(request, 'vyezd.html', {'categorys':categorys,'product':product,'tweets':tweets})
