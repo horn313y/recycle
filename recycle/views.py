@@ -250,7 +250,8 @@ class Cabinet(LoginRequiredMixin,View):
     login_url = '/login'
     
     def get(self,request):
-        return render(request,'cabinet.html')
+        current_user = request.user
+        return render(request,'cabinet.html',{'current_user':current_user})
 
 class Login(View):
     def get(self,request):

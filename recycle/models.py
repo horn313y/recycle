@@ -3,6 +3,8 @@ from django.urls import reverse
 from django.db import models
 from django_editorjs_fields import EditorJsJSONField, EditorJsTextField
 
+from django.contrib.auth.models import User
+
 PURCACHE_CHOICES = (
     ('Килограмм','кг'),
     ('Штук', 'шт')
@@ -115,6 +117,7 @@ class Punkt(models.Model):
 
 
 class Agent(models.Model):
+    user_link = models.OneToOneField(User, null=True, blank=True, on_delete=models.CASCADE)
     agent_name = models.CharField('Имя агента', max_length=200)
     agent_title = models.CharField('Заголовок для Open Graph (og:title)', max_length=200)
     agent_metadesc = models.CharField('Описание для Open Graph (og:description)', max_length=300)
