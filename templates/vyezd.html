@@ -28,7 +28,7 @@
                 <p class="lead fs-lg px-xl-12 px-xxl-6 mb-7">Свяжитесь с нами и закажите бесплатный выезд в любую точку
                     Беларуси</p>
                 <div class="d-flex justify-content-center">
-                    <span><a href="#" class="btn btn-primary rounded-pill m-3">Заказать бесплатный выезд</a></span>
+                    <span><a href="#"  data-bs-toggle="modal" data-bs-target="#modal-09" class="btn btn-primary rounded-pill m-3">Заказать бесплатный выезд</a></span>
                     
                 </div>
             
@@ -118,7 +118,7 @@
           <div class="card image-wrapper bg-full bg-image bg-overlay bg-overlay-400" data-image-src="{% static '/img/photos/bg3.png' %}">
             <div class="card-body p-6 p-md-11 d-lg-flex flex-row align-items-lg-center justify-content-md-between text-center text-lg-start">
               <h3 class="display-6 mb-6 mb-lg-0 pe-lg-10 pe-xl-5 pe-xxl-12 text-white">Закажите бесплатный выезд специалиста и получите до {{ product.first.product_price }} за кг радиодеталей</h3>
-              <a href="#" class="btn btn-white rounded-pill mb-0 text-nowrap">Заказать бесплатный выезд</a>
+              <a href="#" data-bs-toggle="modal" data-bs-target="#modal-09" class="btn btn-white rounded-pill mb-0 text-nowrap">Заказать бесплатный выезд</a>
             </div>
             <!--/.card-body -->
           </div>
@@ -216,7 +216,7 @@
                   <!--/.card-header -->
                   <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
                     <div class="card-body">
-                                              <p>При сдаче электронного лома необходимо предъявить паспорт. Посмотреть адреса и режим работы пунктов приема можно <a href="{% url 'priem' %}">посмотреть на этой старнице</a> или заказать бесплатный выезд</p>
+                        <p>При сдаче электронного лома необходимо предъявить паспорт. Посмотреть адреса и режим работы пунктов приема можно <a href="{% url 'priem' %}">посмотреть на этой старнице</a> или заказать бесплатный выезд</p>
                     </div>
                     <!--/.card-body -->
                   </div>

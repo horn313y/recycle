@@ -123,7 +123,7 @@
                 <h1 class="display-4 mb-3">Мы скупаем радиодетали, платы и катализаторы</h1>
                 <p class="lead fs-lg">Оказывыаем услуги для юридических лиц по утилизации оборудования</p>
                 
-                <a href="#" class="btn btn-primary rounded-pill m-3">Заказать звонок</a>
+                <a href="#" data-bs-toggle="modal" data-bs-target="#modal-01" class="btn btn-primary rounded-pill m-3">Заказать звонок</a>
                 <a href="{% url 'search' %}" class="btn btn-outline-primary rounded-pill m-3">Поиск по каталогу</a>
               </div>
               <!--/column -->
@@ -206,7 +206,7 @@
               
               <h3 class="display-5 mb-4">Услуги для юридических лиц</h3>
               <p class="lead mb-6">Мы предоставляем услуги по утилизации оборудования с полным сопровождением всего процесса сделки</p>
-              <a href="#" class="btn btn-primary rounded-pill">Получить консультацию</a>
+              <a href="#" data-bs-toggle="modal" data-bs-target="#modal-03" class="btn btn-primary rounded-pill">Получить консультацию</a>
             </div>
             <!--/column -->
             <div class="col-lg-6">
@@ -468,5 +468,25 @@
     </section>
 </div>
 
-
+<div class="modal fade" id="modal-03" tabindex="-1" style="display: none;" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-md">
+    <div class="modal-content text-center">
+      <div class="modal-body">
+        <h3>Отправьте заявку</h3>
+        <script data-b24-form="inline/16/dfygj9" data-skip-moving="true">
+          (function(w, d, u) {
+            var s = d.createElement('script');
+            s.async = true;
+            s.src = u + '?' + (Date.now() / 180000 | 0);
+            var h = d.getElementsByTagName('script')[0];
+            h.parentNode.insertBefore(s, h);
+          })(window, document, 'https://cdn-ru.bitrix24.by/b11356450/crm/form/loader_16.js');
+        </script>
+      </div>
+      <!--/.modal-body -->
+    </div>
+    <!--/.modal-content -->
+  </div>
+  <!--/.modal-dialog -->
+</div>
 {% endblock %}

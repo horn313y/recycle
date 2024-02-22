@@ -85,9 +85,12 @@
 			<!-- /column -->
 			<div class="col-lg-8 mt-lg-2">
 				<div class="row align-items-center counter-wrapper gy-6">
-					<strong><a class="underline-2 green" href="{% url 'vyezd' %}">Подробнее про маршруты</a></strong>
+					
+					<strong>Маршруты в этом регионе<a class="underline-2 green" href="{% url 'vyezd' %}"> - подробнее про маршруты</a></strong>
+					{% if tweets %}
 					{% for tweet in tweets %}
-            {% if tweet.tweet_type == 'Выезд'%}
+					
+            
             <div class="col-md-6 col-xl-6">
                 <div class="card card-border-start border-primary card_mainpage">
                     <div class="card-body">
@@ -107,8 +110,33 @@
                 </div>
                 <!--/.card -->
             </div>
+
+			{% endfor %}
+
+			{% else %}
+			<section class="wrapper bg-light">
+				<div class="container6">
+				  <div class="row">
+					<div class="col-xl-12">
+					  <div class="card image-wrapper bg-full bg-image bg-overlay bg-overlay-400" data-image-src="{% static '/img/photos/bg3.png' %}">
+						<div class="card-body p-6 p-md-11 d-lg-flex flex-row align-items-lg-center justify-content-md-between text-center text-lg-start">
+						  <p class="display-6 mb-6 mb-lg-0 pe-lg-10 pe-xl-5 pe-xxl-12 text-white"><strong>Закажите бесплатный выезд специалиста и получите до {{ product.first.product_price }} за кг радиодеталей</strong></p>
+						  <a href="#" data-bs-toggle="modal" data-bs-target="#modal-01" class="btn btn-white rounded-pill mb-0 text-nowrap">Заказать бесплатный выезд</a>
+						</div>
+						<!--/.card-body -->
+					  </div>
+					  <!--/.card -->
+					</div>
+					<!-- /column -->
+				  </div>
+				  <!-- /.row -->
+				</div>
+				<!-- /.container -->
+			  </section>
+			  <!-- /section -->
             {% endif %}
-            {% endfor %}
+
+          
 				</div>
 				<!--/.row -->
 			</div>

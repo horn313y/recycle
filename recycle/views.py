@@ -173,8 +173,9 @@ class RegionView(View):
     def get(self, request, region_slug):
         region = Region.objects.get(region_slug=region_slug)
         categorys = Category.objects.all()
-        tweets = Tweet.objects.filter(tweet_type='Выезд').order_by("-pub_date")[:2]
-        return render(request, 'regionpage.html', {'region': region, 'categorys': categorys,'tweets':tweets})
+        tweets = Tweet.objects.filter(tweet_type='Выезд', region=region).order_by("-pub_date")[:2]
+        product = Product.objects.annotate(price_as_float = Cast('product_price', output_field=FloatField())).order_by('-price_as_float')
+        return render(request, 'regionpage.html', {'region': region, 'categorys': categorys,'tweets':tweets, 'product':product})
 
 
 class Spisanie(View):
@@ -269,6 +270,6 @@ class Login(View):
 class Vyezd(View):
     def get(self,request):
         categorys = Category.objects.all()
-        tweets = Tweet.objects.all().order_by("-pub_date")[:4]
+        tweets = Tweet.objects.all().order_by("-pub_date")[:9]
         product = Product.objects.annotate(price_as_float = Cast('product_price', output_field=FloatField())).order_by('-price_as_float')
         return render(request, 'vyezd.html', {'categorys':categorys,'product':product,'tweets':tweets})

@@ -134,7 +134,7 @@ class Tweet(models.Model):
     tweet_short_desc = models.TextField('Короткое описание для Schema', blank=True)
     pub_date = models.DateTimeField(default=datetime.datetime.now)
     tweet_type = models.CharField('Тип заметки', max_length=10, choices=TWEET_CHOICES, blank=True)
-
+    region = models.ManyToManyField(Region, blank=True)
     def __str__(self):
         return self.tweet_name
 

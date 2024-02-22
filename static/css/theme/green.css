@@ -39687,13 +39687,19 @@ footer.bg-dark.angled.upper-start:before {
     min-height: 46px;
 }
 
-@media (max-width: 1000px) {
+@media (max-width: 991px) {
     .mobile-hidden {
         display: none;
     }
+    .pvw-title span {
+        display: none;
+    }
 
+    .pvw-title:after {
+        content: "ЛК";
+    }
     .pvw-title {
-       color: #fff !important;;
+       color: #fff !important;
     }
 
 }
@@ -39703,13 +39709,9 @@ footer.bg-dark.angled.upper-start:before {
         display: none;
     }
 
-    .pvw-title span {
-        display: none;
-    }
 
-    .pvw-title:after {
-        content: 'ЛК';
-    }
+
+   
 
     .logoimg {
         max-width: 80px;
