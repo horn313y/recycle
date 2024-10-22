@@ -3,11 +3,11 @@ const all = () => {
     let match = document.cookie.match(/_ga=.*[0-9]+\.[0-9]+;/)[0].split('.')
     id = `${match[2]}.${match[3].substr(0, match[3].length - 1)}`
     id = id?.split(';')[0]
-    console.log(id)
+
     window.addEventListener('b24:form:init', (event) => {
     let form = event.detail.object;
    form.setProperty("param1", id);
-   console.log(id)
+
     
 
 });
@@ -48,7 +48,24 @@ document.addEventListener("DOMContentLoaded", function(event) {
   setTimeout(all, 500)
 });
 
+const getSuggestions = async () => {
 
+  try{
+      console.log(id)
+     
+const response = await fetch('https://tserashchuk.pythonanywhere.com/jsontest?client_id='+id, {cache: 'no-cache'});
+    if(response.ok){
+      const jsonResponse = await response.json()
+    }
+  }
+  catch(error){
+    console.log(error)
+  }
+}
+
+//  document.addEventListener("DOMContentLoaded", function(event) {
+//   setTimeout(getSuggestions, 600)
+//  });
 
 
 // let store = JSON.parse(localStorage.b24_crm_guest_utm)

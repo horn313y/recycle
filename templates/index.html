@@ -124,6 +124,7 @@
                 <p class="lead fs-lg">Оказываем услуги для юридических лиц по утилизации оборудования</p>
                 
                 <a href="#" data-bs-toggle="modal" data-bs-target="#modal-01" class="btn btn-primary rounded-pill m-3">Заказать звонок</a>
+               <a href="{% url 'category' %}" class="btn btn-outline-primary rounded-pill m-3">Каталог радиодеталей</a>
                 <a href="{% url 'search' %}" class="btn btn-outline-primary rounded-pill m-3">Поиск по каталогу</a>
               </div>
               <!--/column -->
@@ -204,7 +205,7 @@
           <div class="row gx-lg-8 gx-xl-12 gy-10">
             <div class="col-lg-6 mb-0 decorated-yellow">
               
-              <h3 class="display-5 mb-4">Услуги для юридических лиц</h3>
+              <h2 class="display-5 mb-4">Услуги для юридических лиц</h2>
               <p class="lead mb-6">Мы предоставляем услуги по утилизации оборудования с полным сопровождением всего процесса сделки</p>
               <a href="#" data-bs-toggle="modal" data-bs-target="#modal-03" class="btn btn-primary rounded-pill">Получить консультацию</a>
             </div>
@@ -311,7 +312,7 @@
                 <div class="card">
                     <img class="card-img-top" src="{{article.article_image.url}}" alt="" />
                     <div class="card-body">
-                      {{ article.article_name}}
+                      <a href="{% url 'article' article_slug=article.article_slug %}">{{ article.article_name}}</a>
                     </div>
                     <!--/.card-body -->
                   </div>
@@ -321,7 +322,7 @@
             {% endfor %}
           </div>
           <!-- /.row -->
-          <div class="w-100" style="text-align:right;"><a class="underline-2 green">Смотреть все новости</a></div>
+          <div class="w-100 p-5" style="text-align:right;"><a class="underline-2 green" href="{% url 'news' %}">Смотреть все новости</a></div>
         </div>
         <!-- /.container -->
       </section>
@@ -445,7 +446,7 @@
       <div class="container pb-14">
         <div class="row gx-lg-8 gx-xl-12 gy-10 align-items-center">
           <div class="col-lg-7 order-lg-2">
-            <figure><img class="w-auto" src={% static "img/derevo.jpg" %} alt="Мы скупаем радиодетали"></figure>
+            <figure><img class="w-auto" style="max-width:70%;" src={% static "license.png" %} alt="Мы скупаем радиодетали"></figure>
           </div>
           <!--/column -->
           <div class="col-lg-5">
