@@ -3,6 +3,9 @@
 import os
 import sys
 
+import django
+from django.utils.encoding import smart_str
+django.utils.encoding.smart_text = smart_str
 
 def main():
     """Run administrative tasks."""

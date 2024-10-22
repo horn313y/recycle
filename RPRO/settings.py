@@ -24,10 +24,10 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-!5i9)j-2y^2i@m&x66u#)#3+++@01)bd&-jhm)!fvu-+f!3lks'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 #ALLOWED_HOSTS = ['rpro.pythonanywhere.com','127.0.0.1:8000','127.0.0.1']
-ALLOWED_HOSTS = ['localhost','0.0.0.0','178.159.45.115', 'rpro.by','127.0.0.1'] 
+ALLOWED_HOSTS = ['localhost','0.0.0.0','178.159.45.115', 'rpro.by','127.0.0.1','127.0.0.1:8000'] 
 
 # Application definition
 
@@ -134,9 +134,12 @@ USE_TZ = True
 
 
 STATIC_URL = '/static/'
-STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, "static"),
-]
+if DEBUG:
+        STATICFILES_DIRS = [
+            os.path.join(BASE_DIR, 'static')
+       ]
+else:
+    STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = (
