@@ -60,6 +60,8 @@ urlpatterns = [
     path('vacancies', views.Job.as_view(), name='vacancies'),
     path('region/<str:region_slug>', views.RegionView.as_view(), name='region'),
     path('login', views.Login.as_view(), name='login'),
+    path('logout', views.Logout.as_view(), name='logout'),
+    path('register', views.Register.as_view(), name='register'),
     path('cabinet', views.Cabinet.as_view(), name='cabinet'),
     path('editorjs', include('django_editorjs_fields.urls')),
     path('api-auth/', include(rest.router.urls)),

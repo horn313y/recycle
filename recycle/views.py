@@ -15,7 +15,7 @@ from django.db.models.functions import Cast
 
 
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, logout
 
 
 class Home(View):
@@ -251,10 +251,16 @@ class Cabinet(LoginRequiredMixin,View):
     
     def get(self,request):
         current_user = request.user
+        current_user = Client.objects.get(djuser=current_user)
         return render(request,'cabinet.html',{'current_user':current_user})
 
 class Login(View):
     def get(self,request):
+        current_user = request.user
+        # if current_user is not None:
+        #     if current_user.is_active:
+                
+        #         return redirect('cabinet')
         return render (request, 'login.html')
 
     def post(self,request):
@@ -267,6 +273,53 @@ class Login(View):
                 return redirect('cabinet')
         else:
             return HttpResponse('доступ запрещен')
+        
+class Register(View):
+    def get(self,request):
+        return render (request, 'register.html')
+
+    def post(self,request):
+        name = request.POST.get("name", "")
+        password = request.POST.get("password", "")
+        phone = request.POST.get("phone", "")
+        user = User.objects.create_user(username=name, password=password)
+        Client.objects.create(djuser=user, phone=phone, name=name)
+        return redirect('cabinet')
+    
+class Login(View):
+    def get(self,request):
+        current_user = request.user
+        if current_user is not None:
+            if current_user.is_active:               
+                return redirect('cabinet')
+        return render (request, 'login.html')
+
+    def post(self,request):
+        name = request.POST.get("name", "")
+        password = request.POST.get("password", "")
+        # u = User.objects.get(username=name)
+        # if u is not None:
+        #     if u.is_active:
+        #         login(request, u)
+        #         return redirect('cabinet')
+        # else:
+        #     return HttpResponse('доступ запрещен')
+        user = authenticate(username=name, password=password)
+        if user is not None:
+            if user.is_active:
+                login(request, user)
+                return redirect('cabinet')
+        else:
+            return HttpResponse('доступ запрещен')
+        
+        
+class Logout(View):
+    def get(self,request):
+        current_user = request.user
+        if current_user:
+            logout(request) 
+        return redirect('home')
+
     
 class Vyezd(View):
     def get(self,request):

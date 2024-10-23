@@ -3,6 +3,21 @@
 {% block content %}
 
 <div class='container'>
-{{ current_user.agent }}
+    <a href="{% url 'logout'%}">Выйти</a>
+    <h1>Уважаемый, {{current_user.name}}, Вам доступны следующие акции</h1>
+    <div>
+        {% for ales in current_user.client_category.all %}
+        {% for sale in ales.sales.all %}
+        <div class="card shadow-none bg-soft-primary">
+            <div class="card-body">
+                {{sale.name}} </br>
+                {{sale.short_desc}}
+
+            </div>
+        </div>
+        &nbsp;
+
+        {% endfor %}{% endfor %}
+    </div>
 </div>
 {% endblock %}

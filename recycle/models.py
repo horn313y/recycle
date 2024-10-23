@@ -143,3 +143,33 @@ class Tweet(models.Model):
 
     def get_absolute_url(self):
         return reverse('tweet', args=[self.tweet_slug])
+
+
+
+class ClientSales(models.Model):
+    name = models.CharField('Название', max_length=200)
+    short_desc = models.TextField('Описание', blank=True)
+    price_link = models.CharField('Ссылка на специальный прайс', max_length=200, blank=True)
+    
+    def __str__(self):
+        return self.name
+
+class ClientCategory(models.Model):
+    name = models.CharField('Название', max_length=200)
+    short_desc = models.TextField('Описание', blank=True)
+    sales = models.ManyToManyField(ClientSales, blank=True)
+    
+    def __str__(self):
+        return self.name
+
+class Client(models.Model):
+    djuser = models.OneToOneField(User, on_delete=models.CASCADE)
+    phone = models.CharField('Телефон', max_length=200)
+    name = models.CharField('Имя', max_length=200)
+    client_category = models.ManyToManyField(ClientCategory, blank=True)
+
+    is_active = models.BooleanField(default=True)
+    is_admin = models.BooleanField(default=False)
+
+    def __str__(self):
+        return self.name

@@ -17,6 +17,9 @@ admin.site.register(Region, admin.ModelAdmin)
 admin.site.register(Punkt, admin.ModelAdmin)
 admin.site.register(Agent, admin.ModelAdmin)
 admin.site.register(Tweet, admin.ModelAdmin)
+admin.site.register(Client, admin.ModelAdmin)
+admin.site.register(ClientSales, admin.ModelAdmin)
+admin.site.register(ClientCategory, admin.ModelAdmin)
 
 @admin.register(Product)
 class ProductAdmin(admin.ModelAdmin):
