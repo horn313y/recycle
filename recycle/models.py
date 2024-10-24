@@ -166,10 +166,23 @@ class Client(models.Model):
     djuser = models.OneToOneField(User, on_delete=models.CASCADE)
     phone = models.CharField('Телефон', max_length=200)
     name = models.CharField('Имя', max_length=200)
+    client_opt = models.CharField(max_length=6, null=True, blank=True)
     client_category = models.ManyToManyField(ClientCategory, blank=True)
 
-    is_active = models.BooleanField(default=True)
+    is_active = models.BooleanField(default=False)
     is_admin = models.BooleanField(default=False)
+
+    def __str__(self):
+        return self.name
+    
+class Deal(models.Model):
+    client_id = models.CharField('Идентификатор пользователя', max_length=200)
+    client_tel = models.CharField('Телефон пользователя', max_length=200)
+    agent_id = models.CharField('Идентификатор агента', max_length=200)
+    code = models.CharField('Код из СМС', max_length=200)
+    pub_date = models.DateTimeField(default=datetime.datetime.now)
+
+
 
     def __str__(self):
         return self.name

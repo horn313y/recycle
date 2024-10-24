@@ -9,6 +9,7 @@ from django.conf import settings
 from django.http import HttpResponse
 from recycle.models import *
 from bitrix24 import *
+import requests
 
 from django.db.models import FloatField
 from django.db.models.functions import Cast
@@ -16,6 +17,10 @@ from django.db.models.functions import Cast
 
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth import authenticate, login, logout
+
+
+import pyotp
+import time
 
 
 class Home(View):
@@ -253,64 +258,78 @@ class Cabinet(LoginRequiredMixin,View):
         current_user = request.user
         current_user = Client.objects.get(djuser=current_user)
         return render(request,'cabinet.html',{'current_user':current_user})
+    
 
-class Login(View):
-    def get(self,request):
-        current_user = request.user
-        # if current_user is not None:
-        #     if current_user.is_active:
-                
-        #         return redirect('cabinet')
-        return render (request, 'login.html')
 
-    def post(self,request):
-        name = request.POST.get("name", "")
-        password = request.POST.get("password", "")
-        user = authenticate(username=name, password=password)
-        if user is not None:
-            if user.is_active:
-                login(request, user)
-                return redirect('cabinet')
-        else:
-            return HttpResponse('доступ запрещен')
-        
 class Register(View):
     def get(self,request):
         return render (request, 'register.html')
 
     def post(self,request):
-        name = request.POST.get("name", "")
-        password = request.POST.get("password", "")
-        phone = request.POST.get("phone", "")
-        user = User.objects.create_user(username=name, password=password)
-        Client.objects.create(djuser=user, phone=phone, name=name)
-        return redirect('cabinet')
+        totp = pyotp.TOTP('base32secret3232')
+
+        url = 'https://userarea.sms-assistent.by/api/v1/send_sms/plain?user=ResayklPro&password=bM3oMrKV&recipient='+request.POST.get("name", "")+'&message='+str(totp.now())+'&sender=rpro.by'
+        requests.get(url = url)
+
+        request.session['name'] = request.POST.get("name", "")
+        request.session['code'] = totp.now()
+        request.session['action'] = 'register'
+        return redirect('verify')
+    
+class Verify(View):
+
+    def get(self,request):
+        return render (request, 'verify.html')
+
+    def post(self,request):
+        code = request.POST.get("code", "")
+        sended_code = request.session['code']
+        name = request.session['name']
+
+
+        if request.session['action'] == 'register':
+            user = User.objects.create_user(username=name, password=None)
+            Client.objects.create(djuser=user, name=name, phone=name, client_opt=code)
+            if sended_code==code:
+                login(request, user)
+            else:
+                return redirect('register')
+            return redirect('cabinet')
+        if request.session['action'] == 'login':
+            user = User.objects.get(username=name)
+            if user:
+                if sended_code==code:
+                    login(request, user)
+                    return redirect('cabinet')
+                else:
+                    return redirect('login')
+            else:
+                return redirect('login')
+
     
 class Login(View):
     def get(self,request):
         current_user = request.user
+        print(current_user)
         if current_user is not None:
             if current_user.is_active:               
                 return redirect('cabinet')
         return render (request, 'login.html')
 
     def post(self,request):
-        name = request.POST.get("name", "")
-        password = request.POST.get("password", "")
-        # u = User.objects.get(username=name)
-        # if u is not None:
-        #     if u.is_active:
-        #         login(request, u)
-        #         return redirect('cabinet')
-        # else:
-        #     return HttpResponse('доступ запрещен')
-        user = authenticate(username=name, password=password)
-        if user is not None:
-            if user.is_active:
-                login(request, user)
-                return redirect('cabinet')
-        else:
-            return HttpResponse('доступ запрещен')
+        user = User.objects.get(username=request.POST.get("name", ""))
+        print(user)
+        if user:
+            totp = pyotp.TOTP('base32secret3232')
+            url = 'https://userarea.sms-assistent.by/api/v1/send_sms/plain?user=ResayklPro&password=bM3oMrKV&recipient='+request.POST.get("name", "")+'&message='+str(totp.now())+'&sender=rpro.by'
+            requests.get(url = url)
+
+            request.session['name'] = request.POST.get("name", "")
+            request.session['code'] = totp.now()
+            request.session['action'] = 'login'
+
+        return redirect('verify')
+
         
         
 class Logout(View):
@@ -318,8 +337,11 @@ class Logout(View):
         current_user = request.user
         if current_user:
             logout(request) 
-        return redirect('home')
+        return redirect('home')   
 
+def smssend(request):
+    # https://userarea.sms-assistent.by/api/v1/send_sms/plain?user=ResayklPro&password=bM3oMrKV&recipient=375447465292&message=%D1%82%D0%B5%D0%BA%D1%81%D1%82_%D1%81%D0%BC%D1%81&sender=rpro.by
+    return 'ok'
     
 class Vyezd(View):
     def get(self,request):
