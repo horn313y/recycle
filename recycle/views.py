@@ -266,14 +266,27 @@ class Register(View):
         return render (request, 'register.html')
 
     def post(self,request):
-        totp = pyotp.TOTP('base32secret3232')
+        name = request.POST.get("name", "")
+        if name:
+            totp = pyotp.TOTP('base32secret3232')
+            url = 'https://userarea.sms-assistent.by/api/v1/send_sms/plain?user=ResayklPro&password=bM3oMrKV&recipient='+request.POST.get("name", "")+'&message='+str(totp.now())+'&sender=rpro.by'
+            response = requests.get(url = url)
+            counter = 0
+            if int(response.text) < 0:
+                while counter < 2:
+                    counter = counter+1
+                    time.sleep(10)
+                    response = requests.get(url = url)
+                    if int(response.text)>=0:
+                        break
+                else:
+                    return redirect('login')
 
-        url = 'https://userarea.sms-assistent.by/api/v1/send_sms/plain?user=ResayklPro&password=bM3oMrKV&recipient='+request.POST.get("name", "")+'&message='+str(totp.now())+'&sender=rpro.by'
-        requests.get(url = url)
-
-        request.session['name'] = request.POST.get("name", "")
-        request.session['code'] = totp.now()
-        request.session['action'] = 'register'
+            request.session['name'] = name
+            request.session['code'] = totp.now()
+            request.session['action'] = 'register'
+        else:
+            return redirect('register')
         return redirect('verify')
     
 class Verify(View):
@@ -283,51 +296,65 @@ class Verify(View):
 
     def post(self,request):
         code = request.POST.get("code", "")
-        sended_code = request.session['code']
-        name = request.session['name']
+        if code:
+            sended_code = request.session['code']
+            name = request.session['name']
 
 
-        if request.session['action'] == 'register':
-            user = User.objects.create_user(username=name, password=None)
-            Client.objects.create(djuser=user, name=name, phone=name, client_opt=code)
-            if sended_code==code:
-                login(request, user)
-            else:
-                return redirect('register')
-            return redirect('cabinet')
-        if request.session['action'] == 'login':
-            user = User.objects.get(username=name)
-            if user:
+            if request.session['action'] == 'register':
+                user = User.objects.create_user(username=name, password=None)
+                Client.objects.create(djuser=user, name=name, phone=name, client_opt=code)
                 if sended_code==code:
                     login(request, user)
-                    return redirect('cabinet')
+                else:
+                    return redirect('register')
+                return redirect('cabinet')
+            if request.session['action'] == 'login':
+                user = User.objects.get(username=name)
+                if user:
+                    if sended_code==code:
+                        login(request, user)
+                        return redirect('cabinet')
+                    else:
+                        return redirect('login')
                 else:
                     return redirect('login')
-            else:
-                return redirect('login')
+        else:
+            return redirect('verify')
 
     
 class Login(View):
     def get(self,request):
         current_user = request.user
-        print(current_user)
         if current_user is not None:
             if current_user.is_active:               
                 return redirect('cabinet')
         return render (request, 'login.html')
 
     def post(self,request):
-        user = User.objects.get(username=request.POST.get("name", ""))
-        print(user)
-        if user:
-            totp = pyotp.TOTP('base32secret3232')
-            url = 'https://userarea.sms-assistent.by/api/v1/send_sms/plain?user=ResayklPro&password=bM3oMrKV&recipient='+request.POST.get("name", "")+'&message='+str(totp.now())+'&sender=rpro.by'
-            requests.get(url = url)
-
-            request.session['name'] = request.POST.get("name", "")
-            request.session['code'] = totp.now()
-            request.session['action'] = 'login'
-
+        name = request.POST.get("name", "")
+        if name:
+            user = User.objects.get(username=name)
+            print(user)
+            if user:
+                totp = pyotp.TOTP('base32secret3232')
+                url = 'https://userarea.sms-assistent.by/api/v1/send_sms/plain?user=ResayklPro&password=bM3oMrKV&recipient='+request.POST.get("name", "")+'&message='+str(totp.now())+'&sender=rpro.by'
+                response = requests.get(url = url)
+                counter = 0
+                if int(response.text) < 0:
+                    while counter < 2:
+                        counter = counter+1
+                        time.sleep(10)
+                        response = requests.get(url = url)
+                        if int(response.text)>=0:
+                            break
+                    else:
+                        return redirect('register')
+                request.session['name'] = request.POST.get("name", "")
+                request.session['code'] = totp.now()
+                request.session['action'] = 'login'
+        else:
+            return redirect('login')
         return redirect('verify')
 
         
