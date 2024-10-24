@@ -339,10 +339,6 @@ class Logout(View):
             logout(request) 
         return redirect('home')   
 
-def smssend(request):
-    # https://userarea.sms-assistent.by/api/v1/send_sms/plain?user=ResayklPro&password=bM3oMrKV&recipient=375447465292&message=%D1%82%D0%B5%D0%BA%D1%81%D1%82_%D1%81%D0%BC%D1%81&sender=rpro.by
-    return 'ok'
-    
 class Vyezd(View):
     def get(self,request):
         categorys = Category.objects.all()

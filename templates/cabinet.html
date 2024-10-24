@@ -2,22 +2,68 @@
 {% load static %}
 {% block content %}
 
-<div class='container'>
-    <a href="{% url 'logout'%}">Выйти</a>
-    <h1>Уважаемый, {{current_user.name}}, Вам доступны следующие акции</h1>
-    <div>
-        {% for ales in current_user.client_category.all %}
-        {% for sale in ales.sales.all %}
-        <div class="card shadow-none bg-soft-primary">
-            <div class="card-body">
-                {{sale.name}} </br>
-                {{sale.short_desc}}
-                <a href={{ sale.price_link }}>Специальный прайс</a>
-            </div>
-        </div>
-        &nbsp;
+<div class="content-wrapper">
+ 
+    <div class="container">     
 
-        {% endfor %}{% endfor %}
-    </div>
-</div>
+        <ul class="nav nav-tabs nav-tabs-basic">
+            <li class="nav-item"> <a class="nav-link active" data-bs-toggle="tab" href="#tab3-1">Акции</a> </li>
+            <li class="nav-item"> <a class="nav-link" data-bs-toggle="tab" href="#tab3-2">Руководитель направления заготовки</a> </li>
+            <li class="nav-item"> <a class="nav-link" data-bs-toggle="tab" href="#tab3-3">Руководитель направления катализаторов</a> </li>
+          </ul>
+          <!-- /.nav-tabs -->
+          <div class="tab-content mt-0 mt-md-5">
+            <div class="tab-pane fade show active" id="tab3-1">
+                <section class="section-frame mx-xxl-11 overflow-hidden">
+                    <div class="wrapper image-wrapper bg-image bg-cover  bg-overlay-light-500" >
+                      <div class="container py-16 py-md-18 text-center position-relative">
+                        <a href="{% url 'logout'%}" class="h4like">Выйти</a>
+                        <div class="position-absolute shape yellow d-none d-lg-block w-5" style="top: 18%; left: 5%;"><img src={% static 'img/svg/pie.svg' %} class="svg-inject icon-svg w-100 h-100" alt="" /></div>
+                        <div class="position-absolute shape leaf d-none d-lg-block w-10" style="bottom: 30%; left: 2%;"><img src={% static 'img/svg/scribble.svg' %} class="svg-inject icon-svg w-100 h-100" alt="" /></div>
+                        <div class="position-absolute shape fuchsia d-none d-lg-block w-6" style="top: 20%; right: 2%; transform: rotate(70deg);"><img src={% static 'img/svg/tri.svg' %} class="svg-inject icon-svg w-100 h-100" alt="" /></div>
+                        <div class="position-absolute shape grape d-none d-lg-block w-6" style="bottom: 28%; right: 5%;"><img src={% static 'img/svg/circle.svg' %} class="svg-inject icon-svg w-100 h-100" alt="" /></div>
+                        <div class="row">
+                          <div class="col-lg-9 col-xxl-8 mx-auto">
+                            <h1 class="display-1 fs-70 px-md-10 px-lg-0 px-xl-8 mb-5">👋 Здравствуйте, ваш статус {{current_user.client_category.all.first}}</h1>
+                            <p class="lead fs-24 px-md-10 px-lg-0 mx-lg-n10 mx-xl-0 mb-8">Данный статус клиента дает вам специальные условия, предъявите страницу личного кабинету сотруднику РесайклПро для их получения </p>
+                            <div>
+                                {% for ales in current_user.client_category.all %}
+                                {% for sale in ales.sales.all %}
+                                <div class="card shadow-none bg-soft-primary">
+                                    <div class="card-body">
+                                        <h5>{{sale.name}}</h5>
+                                        <div>{{sale.short_desc}}</div>
+                                        <a href={{ sale.price_link }}>Специальный прайс</a>
+                                    </div>
+                                </div>
+                                &nbsp;
+                        
+                                {% endfor %}{% endfor %}
+                            </div>
+                          </div>
+                          <!-- /column -->
+                        </div>
+                        <!-- /.row -->
+                      </div>
+                      <!-- /.container -->
+                    </div>
+                    <!-- /.wrapper -->
+                  </section>
+                  <!-- /section -->
+            </div>
+            <!--/.tab-pane -->
+            <div class="tab-pane fade" id="tab3-2">
+              ...
+            </div>
+            <!--/.tab-pane -->
+            <div class="tab-pane fade" id="tab3-3">
+              ...
+            </div>
+            <!--/.tab-pane -->
+          </div>
+          <!-- /.tab-content -->
+
+
+    
+</div></div>
 {% endblock %}
