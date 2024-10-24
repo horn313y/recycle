@@ -17,7 +17,7 @@ from django.db.models.functions import Cast
 
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth import authenticate, login, logout
-
+from django.contrib import messages
 
 import pyotp
 import time
@@ -268,6 +268,14 @@ class Register(View):
     def post(self,request):
         name = request.POST.get("name", "")
         if name:
+            try:
+                user = User.objects.get(username=name)
+                if user:
+                    messages.success(request, 'Такой пользователь уже существует, для входа используйте данную форму')
+                    return redirect('login')  
+            except:
+                messages.success(request, 'Ошибка - попробуйте еще раз')
+                return redirect('register')  
             totp = pyotp.TOTP('base32secret3232')
             url = 'https://userarea.sms-assistent.by/api/v1/send_sms/plain?user=ResayklPro&password=bM3oMrKV&recipient='+request.POST.get("name", "")+'&message='+str(totp.now())+'&sender=rpro.by'
             response = requests.get(url = url)
@@ -275,17 +283,19 @@ class Register(View):
             if int(response.text) < 0:
                 while counter < 2:
                     counter = counter+1
-                    time.sleep(10)
+                    time.sleep(1)
                     response = requests.get(url = url)
                     if int(response.text)>=0:
                         break
                 else:
-                    return redirect('login')
+                    messages.success(request, 'Ошибка отправки сообщения - попробуйте еще раз')
+                    return redirect('register')
 
             request.session['name'] = name
             request.session['code'] = totp.now()
             request.session['action'] = 'register'
         else:
+            messages.success(request, 'Введите номер телефона')
             return redirect('register')
         return redirect('verify')
     
@@ -300,13 +310,13 @@ class Verify(View):
             sended_code = request.session['code']
             name = request.session['name']
 
-
             if request.session['action'] == 'register':
                 user = User.objects.create_user(username=name, password=None)
                 Client.objects.create(djuser=user, name=name, phone=name, client_opt=code)
                 if sended_code==code:
                     login(request, user)
                 else:
+                    messages.success(request, 'Не правильный код')
                     return redirect('register')
                 return redirect('cabinet')
             if request.session['action'] == 'login':
@@ -316,10 +326,13 @@ class Verify(View):
                         login(request, user)
                         return redirect('cabinet')
                     else:
+                        messages.success(request, 'Не правильный код')
                         return redirect('login')
                 else:
+                    messages.success(request, 'Пользователь не найден')
                     return redirect('login')
         else:
+            messages.success(request, 'Введите код')
             return redirect('verify')
 
     
@@ -334,8 +347,11 @@ class Login(View):
     def post(self,request):
         name = request.POST.get("name", "")
         if name:
-            user = User.objects.get(username=name)
-            print(user)
+            try:
+                user = User.objects.get(username=name)
+            except:
+                messages.success(request, 'Пользователь не найден')
+                return redirect('login')  
             if user:
                 totp = pyotp.TOTP('base32secret3232')
                 url = 'https://userarea.sms-assistent.by/api/v1/send_sms/plain?user=ResayklPro&password=bM3oMrKV&recipient='+request.POST.get("name", "")+'&message='+str(totp.now())+'&sender=rpro.by'
@@ -344,16 +360,18 @@ class Login(View):
                 if int(response.text) < 0:
                     while counter < 2:
                         counter = counter+1
-                        time.sleep(10)
+                        time.sleep(1)
                         response = requests.get(url = url)
                         if int(response.text)>=0:
                             break
                     else:
-                        return redirect('register')
+                        messages.success(request, 'Ошибка отправки сообщения - введите телефон еще раз')
+                        return redirect('login')
                 request.session['name'] = request.POST.get("name", "")
                 request.session['code'] = totp.now()
                 request.session['action'] = 'login'
         else:
+            messages.success(request, 'Введите логин')
             return redirect('login')
         return redirect('verify')
 
