@@ -19,7 +19,15 @@
 									placeholder="Text Input">
 								<label for="textInputExample">Код из смс</label>
 							</div>
+							<div> 
+								{% for message in messages %}
 
+								  <div class="p-5" style="font-size: 12px;">
+									{{message}}
+								  </div>
+									
+								{% endfor %}
+							</div>
 							<div class="form-group">
 								<input type="submit" value="Вход" class="btn btn-primary rounded-pill">
 							</div>

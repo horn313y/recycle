@@ -317,7 +317,7 @@ class Verify(View):
                     login(request, user)
                 else:
                     messages.success(request, 'Не правильный код')
-                    return redirect('register')
+                    return redirect('verify')
                 return redirect('cabinet')
             if request.session['action'] == 'login':
                 user = User.objects.get(username=name)
@@ -327,7 +327,7 @@ class Verify(View):
                         return redirect('cabinet')
                     else:
                         messages.success(request, 'Не правильный код')
-                        return redirect('login')
+                        return redirect('verify')
                 else:
                     messages.success(request, 'Пользователь не найден')
                     return redirect('login')
