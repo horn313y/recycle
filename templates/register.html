@@ -14,7 +14,7 @@
 					<div class="card-body">
 						<form action="/register" method="post">
 							{% csrf_token %}
-							
+							<div class="forminformer"><b>Формат номера: 375xxxxxxxxx</b> без букв, знаков и пробелов</div>
 							<div class="form-floating mb-4" data-bs-toggle="tooltip" data-bs-placement="top" title="Формат номера: 375xxxxxxxxx без букв, знаков и пробелов">
 								
 								<input id="textInputExample" name="name" class="form-control"

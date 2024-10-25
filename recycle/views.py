@@ -309,9 +309,13 @@ class Verify(View):
             name = request.session['name']
 
             if request.session['action'] == 'register':
-                user = User.objects.create_user(username=name, password=None)
-                Client.objects.create(djuser=user, name=name, phone=name, client_opt=code)
+                
                 if sended_code==code:
+                    user = User.objects.create_user(username=name, password=None)
+                    clicategory = ClientCategory.objects.filter(is_default=True)
+                    cli = Client.objects.create(djuser=user, name=name, phone=name, client_opt=code)
+                    for cat in clicategory:
+                        cli.client_category.add(cat)
                     login(request, user)
                 else:
                     messages.success(request, 'Не правильный код')

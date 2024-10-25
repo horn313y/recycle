@@ -158,7 +158,7 @@ class ClientCategory(models.Model):
     name = models.CharField('Название', max_length=200)
     short_desc = models.TextField('Описание', blank=True)
     sales = models.ManyToManyField(ClientSales, blank=True)
-    
+    is_default = models.BooleanField('По умолчинию присваивать всем новым клиентам', default=False)
     def __str__(self):
         return self.name
 

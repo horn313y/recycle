@@ -14,6 +14,7 @@
 					<div class="card-body">
 						<form action="/login" method="post">
 							{% csrf_token %}
+							<div class="forminformer"><b>Формат номера: 375xxxxxxxxx</b> без букв, знаков и пробелов</div>
 							<div class="form-floating mb-4"  data-bs-toggle="tooltip" data-bs-placement="top" title="Формат номера: 375xxxxxxxxx без букв, знаков и пробелов">
 								<input id="textInputExample" name="name" class="form-control"
 									placeholder="Text Input" type="tel" pattern="[0-9]{12}">
@@ -22,7 +23,7 @@
 							<div> 
 								{% for message in messages %}
 								
-								  <div class="p-5" style="font-size: 12px;">
+								  <div class="p-5 formalert" style="font-size: 12px;">
 									<div><i class="uil uil-exclamation-triangle"></i> </div>
 									<div>{{message}}</div>
 								  </div>

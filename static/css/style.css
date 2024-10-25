@@ -39577,3 +39577,21 @@ body>div.content-wrapper>section>div>div>div>p>a {
       margin-right: 0;
     }
   }
+
+  .forminformer{
+    font-size: 12px;
+    width: 100%;
+    background-color: #deffe6;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 10px;
+  }
+
+  .formalert{
+    font-size: 12px;
+    width: 100%;
+    background-color: #f8e3ce;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 10px;
+  }
