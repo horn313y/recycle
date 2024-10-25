@@ -273,27 +273,25 @@ class Register(View):
                 if user:
                     messages.success(request, 'Такой пользователь уже существует, для входа используйте данную форму')
                     return redirect('login')  
-            except:
-                messages.success(request, 'Ошибка - попробуйте еще раз')
-                return redirect('register')  
-            totp = pyotp.TOTP('base32secret3232')
-            url = 'https://userarea.sms-assistent.by/api/v1/send_sms/plain?user=ResayklPro&password=bM3oMrKV&recipient='+request.POST.get("name", "")+'&message='+str(totp.now())+'&sender=rpro.by'
-            response = requests.get(url = url)
-            counter = 0
-            if int(response.text) < 0:
-                while counter < 2:
-                    counter = counter+1
-                    time.sleep(1)
-                    response = requests.get(url = url)
-                    if int(response.text)>=0:
-                        break
-                else:
-                    messages.success(request, 'Ошибка отправки сообщения - попробуйте еще раз')
-                    return redirect('register')
+            except:                
+                totp = pyotp.TOTP('base32secret3232')
+                url = 'https://userarea.sms-assistent.by/api/v1/send_sms/plain?user=ResayklPro&password=bM3oMrKV&recipient='+request.POST.get("name", "")+'&message='+str(totp.now())+'&sender=rpro.by'
+                response = requests.get(url = url)
+                counter = 0
+                if int(response.text) < 0:
+                    while counter < 2:
+                        counter = counter+1
+                        time.sleep(1)
+                        response = requests.get(url = url)
+                        if int(response.text)>=0:
+                            break
+                    else:
+                        messages.success(request, 'Ошибка отправки сообщения - попробуйте еще раз')
+                        return redirect('register')
 
-            request.session['name'] = name
-            request.session['code'] = totp.now()
-            request.session['action'] = 'register'
+                request.session['name'] = name
+                request.session['code'] = totp.now()
+                request.session['action'] = 'register'
         else:
             messages.success(request, 'Введите номер телефона')
             return redirect('register')
