@@ -168,7 +168,7 @@ class Client(models.Model):
     name = models.CharField('Имя', max_length=200)
     client_opt = models.CharField(max_length=6, null=True, blank=True)
     client_category = models.ManyToManyField(ClientCategory, blank=True)
-
+    gid = models.CharField('Gid', max_length=200, blank=True)
     is_active = models.BooleanField(default=False)
     is_admin = models.BooleanField(default=False)
 
